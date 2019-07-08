@@ -14,6 +14,14 @@ public class BoardServiceMine implements BoardService{
 	
 
 	
+	public BoardDao getBoardDao() {
+		return boardDao;
+	}
+	
+	public void setBoardDao(BoardDao boardDao) {
+		this.boardDao = boardDao;
+	}
+	
 
 	@Override
 	public List<BoardVO> list() {
@@ -34,14 +42,6 @@ public class BoardServiceMine implements BoardService{
 	@Override
 	public List<BoardVO> search(String search) {
 		return boardDao.search(search);
-	}
-
-	public BoardDao getBoardDao() {
-		return boardDao;
-	}
-
-	public void setBoardDao(BoardDao boardDao) {
-		this.boardDao = boardDao;
 	}
 	
 }

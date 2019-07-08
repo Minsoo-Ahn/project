@@ -3,8 +3,17 @@ package project.vo;
 import java.sql.Timestamp;
 
 import org.apache.ibatis.type.Alias;
+
+
 @Alias("BoardVO")
 public class BoardVO {
+	private String id;
+	private String content;
+	private int num;
+	private Timestamp regDate;
+	private String image;
+	
+	
 	public String getId() {
 		return id;
 	}
@@ -35,9 +44,4 @@ public class BoardVO {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	private String id;
-	private String content;
-	private int num;
-	private Timestamp regDate;
-	private String image;
 }

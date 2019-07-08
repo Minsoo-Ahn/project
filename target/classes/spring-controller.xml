@@ -8,6 +8,7 @@
 
 
 	<mvc:view-controller path="/intro" view-name="intro"/>
+	
 	<bean id="boardController" class="project.controller.BoardController">
 		<property name="boardService" ref="boardServiceMine"/>
 	</bean>					

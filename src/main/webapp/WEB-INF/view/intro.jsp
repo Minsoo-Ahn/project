@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +28,7 @@
           <div class="collapse navbar-collapse" id="navbar-ex-collapse">
             <ul class="nav navbar-nav navbar-right">
               <li class="active">
-                <a href="#">Home</a>
+                <a href="<c:url value="/main" />">Home</a>
               </li>
               <li class="active">
                 <a href="#">Contacts<i class="fa fa-star fa-fw"></i></a>

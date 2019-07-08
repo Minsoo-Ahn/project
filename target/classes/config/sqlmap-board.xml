@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="projectDao">
+<mapper namespace="boardDao">
 	<!--  <select id="list" resultType="member">
 		select * from member2 order by id
 	</select>
@@ -37,26 +37,24 @@
 	
 	-->
 	<select id="search" parameterType="String" resultType="boardVO">
-		select * from book where title like '%'||#{search}||'%'  or publisher like '%'||#{search}||'%'
+		select * from proboard where id like '%'||#{search}||'%' 
 	</select>
 	<select id="list" resultType="boardVO">
-		select * from book
-		order by seq
+		select * from proboard
+		order by regdate
 	</select>
 	
-	<select id="select" parameterType="int" resultType="boardVO">
-		select * from
-		book where seq = #{seq}
+	<select id="select" parameterType="String" resultType="boardVO">
+		select * proboard
+		book where id = #{id}
 	</select>
 	
 	<insert id="insert" parameterType="boardVO">
-	insert into book
-	(seq, title, num, writer, publisher, price, image, content)
-	values(BOARD_SEQ.nextval,
-	#{title}, #{num}, #{writer}, #{publisher}, #{price}, #{image}, #{content})
-	<selectKey keyProperty="seq" resultType="Integer">
-		select NVL(MAX(seq), 0) from book
-	</selectKey>
+	insert into proboard
+	(id, content, image, regdate)
+	values(
+	#{id}, #{content}, #{image}, sysdate)
+	
 	</insert>
 	
 	
