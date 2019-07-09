@@ -10,11 +10,11 @@
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="css/login.css" rel="stylesheet" type="text/css">
+        <link href="css/main.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
 </head>
 <body>
-<form action="<c:url value="/main" />" method="post">
+<form action="<c:url value="/main" />" method="post" class="form-inline" role="form">
       <div class="section">
             <div class="container">
                 <div class="row">
@@ -28,13 +28,17 @@
                     <div class="col-md-12">
                         <ul class="nav nav-justified nav-pills">
                             <li class="active">
-                                <a href="#">Home</a>
+                                <a href="<c:url value="/main"/>">Home</a>
                             </li>
                             <li class="active">
                                 <a href="#">Profile</a>
                             </li>
                             <li class="active">
-                                <a href="#">Messages</a>
+                                <a data-toggle="modal" href="<c:url value="/write"/>" data-target="#modal-testNew" role="button" data-backdrop="static" >Write</a>
+                            <div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog" >
+						    <div class="modal-dialog" style="width:700px;height:1000px">
+						    <div class="modal-content"></div></div></div>
+
                             </li>
                             <li class="active">
                                 <a href="#">Contact us</a>
@@ -65,26 +69,48 @@
                     </div>
                 </div>
             </div><br>
-        <div class="col-md-7"></div><div class=" col-md-4 text-center">
-        <input type="text" name ="search" placeholder="아이디를 검색해주세요"><button class="btn btn-default btn-xs" type="submit"><img src="img/search.jpg" width="30" height="30"></button></div>
+        <div class="col-md-8"></div><div class=" col-md-4 text-left">
+        <input type="text" class="form-control" name ="search" placeholder="Search your friends"><button class="btn btn-default btn-xs" type="submit"><img alt="search" src="img/search.jpg" width="30" height="30"></button></div>
         </div>
-
-          
+        <div class="col-md-6">
+		</div>
+		<button class="btn btn-default" onclick="history.go(0)">Refresh</button>
+        <div class="container">
         <div class="section"><div class="container"><div class="row"><div class="col-md-3"><div class="col-md-12">  <h1>Friends list</h1> <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet.</p></div></div>
         
-        <div class="col-md-9 text-center"><div class="col-md-12"> 
-        <table>
+        <div class="col-md-7 text-center" style="white-space:pre;"><div class="col-md-12"> 
         <c:forEach var="board" items="${boardList }" varStatus="loop">
+        <table class="table" style="margin-left: auto; margin-right: auto; margin-top: 15px;">
+		<thead>
 		<tr>
-			<td>${board.id }</td>
-			<td>${board.content }</td>
-			<td>${board.regDate }</td>
-			<td><img src="/board/read/${board.image }"/></td>
-			<td>${board.num }</td>
+			<th><h4><strong>작성자 : ${board.id }</strong></h4></th>
 		</tr>
-	</c:forEach>
+		</thead>
+		<tbody>
+		<tr>
+			<td class="text-left" colspan="2">${board.regDate }</td>
+		</tr>
+		<tr>
+			<td class="text-left " colspan="2">${board.content }
+
+		<c:if test="${board.image != null }">
+			<img src="upload/${board.image }" width="400" height="300">
+		</c:if>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-left"><button class="btn btn-default"><img alt="like" src="img/like.png" width="20" height="20"><strong>${board.num }</strong></button></td>
+			<td class="text-right"><button class="btn btn-warning">수정</button>&nbsp;&nbsp;<button class="btn btn-danger">삭제</button></td>
+		</tr>
+		<tr>
+		<td class="text-right" colspan="2">
+			<textarea class="form-control" style="resize:none" cols="58" rows="1" placeholder="Write a commnet..." name="comment"></textarea>&nbsp;&nbsp;<button class="btn btn-default">Send</button></td>
+		</tr>
+		</tbody>
        </table>
-        </div></div><div class="row"> </div></div></div></div>
+       <hr>
+	</c:forEach>
+        </div></div><div class="row"> </div></div></div></div></div>
         
         <footer class="section section-primary">
             <div class="container">

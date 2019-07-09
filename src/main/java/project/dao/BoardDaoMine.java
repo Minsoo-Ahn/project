@@ -26,8 +26,8 @@ public class BoardDaoMine implements BoardDao{
 	}
 
 	@Override
-	public void insert(BoardVO booksVO) {
-		sqlSessionTemplate.insert("insert",booksVO);
+	public void insert(BoardVO boardVO) {
+		sqlSessionTemplate.insert("insert",boardVO);
 		
 	}
 

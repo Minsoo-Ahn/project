@@ -8,7 +8,7 @@
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="css/login.css" rel="stylesheet" type="text/css">
+        <link href="css/signup.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -72,7 +72,7 @@
                             <div class="form-group has-feedback"><div class="col-sm-2"><label for="inputEmail3" class="control-label">ID</label></div>
                                 
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputEmail3" placeholder="ID">
+                                    <input type="text" class="form-control" id="id" placeholder="ID">
                                 </div>
                                 
                             <div class="col-sm-offset-2 col-sm-10"><p class="help-block">
@@ -82,7 +82,7 @@ ID must be at least 6 characters.</p></div></div>
                                     <label for="inputEmail3" class="control-label">Password</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                                    <input type="password" class="form-control" id="password" placeholder="Password">
                                 </div>
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <p class="help-block">

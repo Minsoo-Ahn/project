@@ -37,23 +37,23 @@
 	
 	-->
 	<select id="search" parameterType="String" resultType="boardVO">
-		select * from proboard where id like '%'||#{search}||'%' 
+		select * from proboard where id like '%'||#{search}||'%' order by regdate desc
 	</select>
 	<select id="list" resultType="boardVO">
 		select * from proboard
-		order by regdate
+		order by regdate desc
 	</select>
 	
 	<select id="select" parameterType="String" resultType="boardVO">
 		select * proboard
-		book where id = #{id}
+	 where id = #{id}
 	</select>
 	
 	<insert id="insert" parameterType="boardVO">
 	insert into proboard
-	(id, content, image, regdate)
+	(id, content, image, regdate, seq)
 	values(
-	#{id}, #{content}, #{image}, sysdate)
+	#{id}, #{content}, #{image}, sysdate, proboard_SEQ.nextval)
 	
 	</insert>
 	
