@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,14 +40,14 @@
               <li class="active dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <i class="fa fa-border fa-caret-down fa-fw pull-right text-muted"></i></a>
                 <ul class="dropdown-menu" role="menu">
-                  <li>
-                    <a href="#">Action</a>
+                 <li>
+                      <a href="<c:url value="/signup"/>">Sign up</a>
                   </li>
                   <li>
-                    <a href="#">Another action</a>
+                      <a href="<c:url value="/login"/>">Login</a>
                   </li>
                   <li>
-                    <a href="#">Something else here</a>
+                      <a href="<c:url value="/logout"/>">Logout</a>
                   </li>
                   <li class="divider"></li>
                   <li>
@@ -72,21 +73,22 @@
           <div class="col-md-4">
             <br>
             <br>
-            <h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisici elit,
-                <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
-                <br>Ut enim ad minim veniam, quis nostrud</p>
-            </h4>
+            <h4 class="text-center">HappyStory</h4>
             <br>
             <br>
             <br>
-            <form class="form-horizontal" role="form">
+            <form class="form-horizontal" role="form" method="post" action="<c:url value="/login"/>">
               <div class="form-group">
                 <div class="col-sm-2">
-                  <label for="inputEmail3" class="control-label">Email</label>
+                  <label for="inputEmail3" class="control-label">ID</label>
                 </div>
                 <div class="col-sm-10">
-                  <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                <c:if test="${id ==null}">
+                  <input type="text" class="form-control" id="inputEmail3" placeholder="ID" name="id">
+                 </c:if>
+                 <c:if test="${id !=null}">
+                  <input type="text" class="form-control" id="inputEmail3" placeholder="ID" name="id" value="${id }">
+                 </c:if>
                 </div>
               </div>
               <div class="form-group">
@@ -94,19 +96,19 @@
                   <label for="inputPassword3" class="control-label">Password</label>
                 </div>
                 <div class="col-sm-10">
-                  <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                  <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="password">
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox">Remember me</label>
+                      <input type="checkbox" name = "checkbox" value="true">Remember me</label>
                   </div>
                 </div>
               </div>
               <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
+                <div class="text-right">
                   <button type="submit" class="btn btn-default">Sign in</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <button class="btn btn-default">Sign up</button>
                 </div>

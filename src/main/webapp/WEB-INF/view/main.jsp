@@ -47,13 +47,13 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <i class="fa fa-border fa-caret-down fa-fw pull-right text-muted"></i></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="#">Action</a>
+                                        <a href="<c:url value="/signup"/>">Sign up</a>
                                     </li>
                                     <li>
-                                        <a href="#">Another action</a>
+                                        <a href="<c:url value="/login"/>">Login</a>
                                     </li>
                                     <li>
-                                        <a href="#">Something else here</a>
+                                        <a href="<c:url value="/logout"/>">Logout</a>
                                     </li>
                                     <li class="divider"></li>
                                     <li>

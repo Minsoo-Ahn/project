@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +27,7 @@
                     <div class="col-md-12">
                         <ul class="nav nav-justified nav-pills">
                             <li class="active">
-                                <a href="#">Home</a>
+                                <a href="<c:url value="/main"/>">Home</a>
                             </li>
                             <li class="active">
                                 <a href="#">Profile</a>
@@ -40,13 +42,14 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <i class="fa fa-border fa-caret-down fa-fw pull-right text-muted"></i></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="#">Action</a>
+									<li>
+                                        <a href="<c:url value="/signup"/>">Sign up</a>
                                     </li>
                                     <li>
-                                        <a href="#">Another action</a>
+                                        <a href="<c:url value="/login"/>">Login</a>
                                     </li>
                                     <li>
-                                        <a href="#">Something else here</a>
+                                        <a href="<c:url value="/logout"/>">Logout</a>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
@@ -68,11 +71,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <form class="form-horizontal" role="form">
+                        <form:form commandName="memberVO" class="form-horizontal" role="form"  method="post">
                             <div class="form-group has-feedback"><div class="col-sm-2"><label for="inputEmail3" class="control-label">ID</label></div>
                                 
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="id" placeholder="ID">
+                                    <input type="text" class="form-control" id="id" name="id" placeholder="ID">
+                                   <span style="color:red"><form:errors path="id" /> </span>
                                 </div>
                                 
                             <div class="col-sm-offset-2 col-sm-10"><p class="help-block">
@@ -82,7 +86,8 @@ ID must be at least 6 characters.</p></div></div>
                                     <label for="inputEmail3" class="control-label">Password</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="password" placeholder="Password">
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                                    <span style="color:red"><form:errors path="password" /> </span>
                                 </div>
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <p class="help-block">
@@ -94,7 +99,8 @@ Passwords must be at least 6 characters.</p>
                                     <label class="control-label">Name</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" placeholder="Name">
+                                    <input type="text" class="form-control" placeholder="Name" name="name">
+                                    <span style="color:red"><form:errors path="name" /> </span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -102,7 +108,8 @@ Passwords must be at least 6 characters.</p>
                                     <label class="control-label">Email</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="email" class="form-control" placeholder="Email">
+                                    <input type="text" class="form-control" placeholder="Email" name="email">
+                                    <span style="color:red"><form:errors path="email" /> </span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -110,16 +117,17 @@ Passwords must be at least 6 characters.</p>
                                     <label class="control-label">Phone</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" placeholder="Phone">
+                                    <input type="text" class="form-control" placeholder="Phone" name="phone">
+                                    <span style="color:red"><form:errors path="phone" /> </span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-10 col-sm-offset-2 text-right">
-                                    <button type="submit" class="active btn btn-default">Sign up</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <button type="reset" class="active btn btn-default">Reset</button>
+                                    <button type="submit" class="active btn btn-success">Sign up</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button type="reset" class="active btn btn-warning">Reset</button>
                                 </div>
                             </div>
-                        </form>
+                        </form:form>
                     </div>
                 </div>
             </div>

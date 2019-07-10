@@ -16,7 +16,7 @@
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 	destroy-method="close">	
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.74.128:1521:orcl"/>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.160.130:1521:orcl"/>
 		<property name="user" value="c##user"/>
 		<property name="password" value="1"/>
 		<property name="maxPoolSize" value="100"/>
@@ -30,6 +30,7 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:config/sqlmap-board.xml</value>
+				<value>classpath:config/sqlmap-member.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -51,4 +52,10 @@
 		<property name="boardDao" ref="boardDao"/>
 	</bean>
 	
+	<bean id="memberDao" class="project.dao.MemberDaoMine">
+		<constructor-arg ref="sqlSessionTemplate"/>
+	</bean>
+	<bean id="memberServiceMine" class="project.service.MemberServiceMine">
+		<property name="memberDao" ref="memberDao"/>
+	</bean>
 </beans>

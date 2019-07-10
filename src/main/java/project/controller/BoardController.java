@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import project.controller.SearchCommand;
 import project.service.BoardService;
 import project.vo.BoardVO;
+import project.vo.MemberVO;
 
 @Controller
 public class BoardController {
@@ -43,8 +44,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/write", method=RequestMethod.GET)
-	public String write(Model model) {
-		//model.addAttribute("boardList", boardService.list());
+	public String write() {
 		return "/write";
 	}
 	
@@ -60,6 +60,5 @@ public class BoardController {
 		boardService.write(boardVO);
 		return "redirect:/main";
 	}
-	
-	
+
 }
