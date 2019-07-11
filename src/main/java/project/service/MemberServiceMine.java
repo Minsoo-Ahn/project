@@ -23,5 +23,10 @@ public class MemberServiceMine implements MemberService{
 		
 		return memberDao.selectId(id);
 	}
+	@Override
+	public void memberEdit(MemberVO memberVO) {
+		memberDao.accontSetting(memberVO);
+		
+	}
 	
 }

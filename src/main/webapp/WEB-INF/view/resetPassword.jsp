@@ -78,59 +78,19 @@
                 <div class="row">
                     <div class="col-md-12">
                         <form:form commandName="memberVO" class="form-horizontal" role="form"  method="post">
-                            <div class="form-group has-feedback"><div class="col-sm-2"><label for="inputEmail3" class="control-label">ID</label></div>
+                        <h3 class="text-center">Set your new password!</h3><br><br>
+                            <div class="form-group has-feedback"><div class="col-sm-2"><label for="inputEmail3" class="control-label">Password</label></div>
                                 
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="id" name="id" placeholder="ID">
-                                   <span style="color:red"><form:errors path="id" /> </span>
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                                   <span style="color:red"><form:errors path="password" /> </span>
                                 </div>
-                                
-                            <div class="col-sm-offset-2 col-sm-10"><p class="help-block">
-ID must be at least 6 characters.</p></div></div>
-                            <div class="form-group has-feedback">
-                                <div class="col-sm-2">
-                                    <label for="inputEmail3" class="control-label">Password</label>
-                                </div>
-                                <div class="col-sm-10">
-                                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-                                    <span style="color:red"><form:errors path="password" /> </span>
-                                </div>
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <p class="help-block">
-Passwords must be at least 6 characters.</p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-2">
-                                    <label class="control-label">Name</label>
-                                </div>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" placeholder="Name" name="name">
-                                    <span style="color:red"><form:errors path="name" /> </span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-2">
-                                    <label class="control-label">Email</label>
-                                </div>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" placeholder="Email" name="email">
-                                    <span style="color:red"><form:errors path="email" /> </span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-2">
-                                    <label class="control-label">Phone</label>
-                                </div>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" placeholder="Phone" name="phone">
-                                    <span style="color:red"><form:errors path="phone" /> </span>
-                                </div>
-                            </div>
+                            </div><br>
+                          
                             <div class="form-group">
                                 <div class="col-sm-10 col-sm-offset-2 text-right">
-                                    <button type="submit" class="active btn btn-success">Sign up</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <button type="reset" class="active btn btn-warning">Reset</button>
+                                    <button type="submit" class="active btn btn-success">Done</button>
+                                    <button  type="button" class="active btn btn-default" onclick="location.href='<c:url value="/main"/>'">Cancel</button>
                                 </div>
                             </div>
                         </form:form>

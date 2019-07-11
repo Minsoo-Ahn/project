@@ -15,10 +15,7 @@
 			select NVL(max(id), 0) from member2
 		</selectKey>
 	</insert>
-	<update id="update" parameterType="member">
-		update member2 set name = #{name}, password = #{password}
-		where email = #{email}
-	</update>
+
 	<delete id="delete" parameterType="member">
 		delete from member where email = #{email} and password = #{password}
 	</delete>

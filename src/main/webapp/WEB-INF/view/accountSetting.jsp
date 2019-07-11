@@ -41,27 +41,25 @@
                             <li class="active dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <i class="fa fa-border fa-caret-down fa-fw pull-right text-muted"></i></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li>
-								    <li>
-					                      <a href="<c:url value="/signup"/>">Sign up</a>
-					                  </li>
-					                  <c:if test="${member == null }">
-					                  <li>
-					                      <a href="<c:url value="/login"/>">Login</a>
-					                  </li>
-					                  </c:if>
-					                  <c:if test="${member != null }">
-					                  <li>
-					                      <a href="<c:url value="/logout"/>">Logout</a>
-					                  </li>
-					                  <li class="divider"></li>
-					                  <li>
-					                      <a href="<c:url value="/accountSetting"/>">Account Setting</a>
-					                  </li>
-					                  </c:if>
-					                  <li class="divider"></li>
-					                  <li>
-                                    <li class="divider"></li>
+                                                   <li>
+				                      <a href="<c:url value="/signup"/>">Sign up</a>
+				                  </li>
+				                  <c:if test="${member == null }">
+				                  <li>
+				                      <a href="<c:url value="/login"/>">Login</a>
+				                  </li>
+				                  </c:if>
+				                  <c:if test="${member != null }">
+				                  <li>
+				                      <a href="<c:url value="/logout"/>">Logout</a>
+				                  </li>
+				                  <li class="divider"></li>
+				                  <li>
+				                      <a href="<c:url value="/accountSetting"/>">Account Setting</a>
+				                  </li>
+				                  </c:if>
+				                  <li class="divider"></li>
+				                  <li>
                                     <li>
                                         <a href="#">One more separated link</a>
                                     </li>
@@ -81,19 +79,18 @@
                             <div class="form-group has-feedback"><div class="col-sm-2"><label for="inputEmail3" class="control-label">ID</label></div>
                                 
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="id" name="id" placeholder="ID">
+                                    <input type="text" class="form-control" id="id" name="id" value="${member.id }" readonly>
                                    <span style="color:red"><form:errors path="id" /> </span>
                                 </div>
                                 
                             <div class="col-sm-offset-2 col-sm-10"><p class="help-block">
-ID must be at least 6 characters.</p></div></div>
+							</p></div></div>
                             <div class="form-group has-feedback">
                                 <div class="col-sm-2">
                                     <label for="inputEmail3" class="control-label">Password</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-                                    <span style="color:red"><form:errors path="password" /> </span>
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="New Password">
                                 </div>
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <p class="help-block">
@@ -105,7 +102,7 @@ Passwords must be at least 6 characters.</p>
                                     <label class="control-label">Name</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" placeholder="Name" name="name">
+                                    <input type="text" class="form-control" placeholder="New Name" name="name" value="${member.name }">
                                     <span style="color:red"><form:errors path="name" /> </span>
                                 </div>
                             </div>
@@ -114,7 +111,7 @@ Passwords must be at least 6 characters.</p>
                                     <label class="control-label">Email</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" placeholder="Email" name="email">
+                                    <input type="text" class="form-control" placeholder="New Email" name="email" value="${member.email }">
                                     <span style="color:red"><form:errors path="email" /> </span>
                                 </div>
                             </div>
@@ -123,14 +120,15 @@ Passwords must be at least 6 characters.</p>
                                     <label class="control-label">Phone</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" placeholder="Phone" name="phone">
+                                    <input type="text" class="form-control" placeholder="New Phone" name="phone" value="${member.phone }">
                                     <span style="color:red"><form:errors path="phone" /> </span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-10 col-sm-offset-2 text-right">
-                                    <button type="submit" class="active btn btn-success">Sign up</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button type="submit" class="active btn btn-success">Change</button>
                                     <button type="reset" class="active btn btn-warning">Reset</button>
+                                    <button  type="button" class="active btn btn-default" onclick="location.href='<c:url value="/main"/>'">Cancel</button>
                                 </div>
                             </div>
                         </form:form>

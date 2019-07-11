@@ -12,4 +12,8 @@
 	<select id="selectById" parameterType="String" resultType="memberVO">
 		select * from promember where id=#{id}
 	</select>
+		<update id="accountSetting" parameterType="memberVO">
+		update promember set name = #{name}, password = #{password}, phone = #{phone}, email =#{email}
+		where id = #{id}
+	</update>
 </mapper>

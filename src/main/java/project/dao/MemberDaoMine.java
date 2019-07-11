@@ -22,5 +22,10 @@ public class MemberDaoMine implements MemberDao{
 		
 		return sqlSessionTemplate.selectOne("selectById", id);
 	}
+	@Override
+	public void accontSetting(MemberVO memberVO) {
+		sqlSessionTemplate.update("accountSetting", memberVO);
+		
+	}
 
 }

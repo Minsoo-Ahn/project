@@ -1,7 +1,9 @@
 package project.controller;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -17,7 +19,6 @@ import org.springframework.web.bind.support.SessionStatus;
 import project.service.MemberService;
 import project.vo.MemberVO;
 
-@SessionAttributes("memberVO")
 @Controller
 public class MemberController {
 	MemberService memberService;
@@ -43,37 +44,90 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String login(@CookieValue("cookie")Cookie cookie, Model model) {
-		model.addAttribute("id", cookie.getValue());
+	public String login(HttpServletRequest request, Model model) {
+		Cookie cookies[] = request.getCookies();
+		if(cookies.length != 1) {
+			model.addAttribute("id", cookies[1].getValue());
+		}
 		return "/login";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(@RequestParam("checkbox")boolean check, @RequestParam("id") String id, @RequestParam("password")String password, Model model, HttpServletResponse response) {
+	public String login(HttpServletRequest request, @RequestParam("id") String id, @RequestParam("password")String password, HttpSession session, HttpServletResponse response) {
+		
 		MemberVO memberVO = memberService.selectId(id);
 		if(memberVO == null) {
-			model.addAttribute("msg", "Invalid ID");
 			return "/login";
 		}
 		if(!memberVO.getPassword().equals(password)) {
-			model.addAttribute("msg", "Invalid Password");
 			return "/login";
 		}
 		Cookie cookie = new Cookie("cookie", id);
-		if(check) {
 		cookie.setPath("/");
+		if(request.getParameter("checkbox") != null) {
 		cookie.setMaxAge(60*60*24*15);
-		response.addCookie(cookie);
 		} else {
 		cookie.setMaxAge(0);
 		}
+		response.addCookie(cookie);
+		session.setAttribute("member", memberVO);
 		return "redirect:/main";
 	}
 	
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
-	public String logout(SessionStatus session) {
-		session.setComplete();
-		System.out.println(session.isComplete());
+	public String logout(HttpSession session) {
+		session.removeAttribute("member");
 		return "redirect:/main";
+	}
+	
+	@RequestMapping(value="/accountSetting", method=RequestMethod.GET)
+	public String accountSetting(HttpSession session) {
+		if(session.getAttribute("member") != null) {
+		return "/accountSetting";
+		}
+		else {
+			return "/login";
+		}
+	}
+	@RequestMapping(value="/accountSetting", method=RequestMethod.POST)
+	public String accountSetting(@Valid MemberVO memberVO, BindingResult br) {
+		if(br.hasErrors()) {
+			return "/accountSetting";
+		}
+		memberService.memberEdit(memberVO);
+		return "redirect:/main";
+	}
+	
+	@RequestMapping(value="/forgotPassword", method=RequestMethod.GET)
+	public String forgetPassword() {
+		
+			return "/forgotPassword";
+	}
+	@RequestMapping(value="/forgotPassword", method=RequestMethod.POST)
+	public String forgetPassword(MemberVO memberVO,Model model, HttpSession session) {
+		MemberVO member = memberService.selectId(memberVO.getId());
+		if(member ==null) {
+			model.addAttribute("msg","ID does not exist");
+		}
+		if(member.getEmail().equals(memberVO.getEmail()) & member.getName().equals(memberVO.getName()) 
+				& member.getPhone().equals(memberVO.getPhone())) {
+			session.setAttribute("memberInfo", member);
+			return "redirect:/resetPassword";
+		}
+		return "/forgotPassword";
+	}
+	@RequestMapping(value="/resetPassword", method=RequestMethod.GET)
+	public String resetPassword() {
+		System.out.println("success");
+			return "/resetPassword";
+	}
+	
+	@RequestMapping(value="/resetPassword", method=RequestMethod.POST)
+	public String resetPassword(@RequestParam("password")String password, HttpSession session) {
+		MemberVO memberVO = (MemberVO)session.getAttribute("memberInfo");
+		memberVO.setPassword(password);
+		memberService.memberEdit(memberVO);
+		session.removeAttribute("member");
+			return  "redirect:/main";
 	}
 }

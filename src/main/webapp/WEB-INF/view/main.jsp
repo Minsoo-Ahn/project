@@ -49,16 +49,20 @@
                                     <li>
                                         <a href="<c:url value="/signup"/>">Sign up</a>
                                     </li>
+                                    <c:if test="${member == null }">
                                     <li>
                                         <a href="<c:url value="/login"/>">Login</a>
                                     </li>
+                                    </c:if>
+                                    <c:if test="${member != null }">
                                     <li>
                                         <a href="<c:url value="/logout"/>">Logout</a>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <a href="#">Separated link</a>
+                                        <a href="<c:url value="/accountSetting"/>">Account Setting</a>
                                     </li>
+                                    </c:if>
                                     <li class="divider"></li>
                                     <li>
                                         <a href="#">One more separated link</a>

@@ -11,6 +11,7 @@
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="css/login.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
+
 </head>
 <body>
  <div class="section">
@@ -40,19 +41,23 @@
               <li class="active dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <i class="fa fa-border fa-caret-down fa-fw pull-right text-muted"></i></a>
                 <ul class="dropdown-menu" role="menu">
-                 <li>
+                   <li>
                       <a href="<c:url value="/signup"/>">Sign up</a>
                   </li>
+                  <c:if test="${member == null }">
                   <li>
                       <a href="<c:url value="/login"/>">Login</a>
                   </li>
+                  </c:if>
+                  <c:if test="${member != null }">
                   <li>
                       <a href="<c:url value="/logout"/>">Logout</a>
                   </li>
                   <li class="divider"></li>
                   <li>
-                    <a href="#">Separated link</a>
+                      <a href="<c:url value="/accountSetting"/>">Account Setting</a>
                   </li>
+                  </c:if>
                   <li class="divider"></li>
                   <li>
                     <a href="#">One more separated link</a>
@@ -109,10 +114,13 @@
               </div>
               <div class="form-group">
                 <div class="text-right">
-                  <button type="submit" class="btn btn-default">Sign in</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <button class="btn btn-default">Sign up</button>
+                  <button type="submit" class="btn btn-default">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <button type="button" class="btn btn-default" onclick="location.href='<c:url value="/main"/>'">Cancel</button>
                 </div>
               </div>
+              <br><br>
+              <div class="col-sm-4"></div>
+              <div class="col-sm-5" ><a href="<c:url value="/forgotPassword"/>"><span style="color:blue">Forgot Password?</span></a></div>
             </form>
           </div>
         </div>
@@ -152,6 +160,6 @@
         </div>
       </div>
     </footer>
-  
+
 </body>
 </html>
