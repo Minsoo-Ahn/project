@@ -43,5 +43,17 @@ public class BoardServiceMine implements BoardService{
 	public List<BoardVO> search(String search) {
 		return boardDao.search(search);
 	}
+
+	@Override
+	public void delete(int seq) {
+		boardDao.delete(seq);
+		
+	}
+
+	@Override
+	public BoardVO searchBoard(int seq) {
+		
+		return boardDao.searchBoard(seq);
+	}
 	
 }

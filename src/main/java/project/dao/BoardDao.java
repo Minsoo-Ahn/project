@@ -9,4 +9,6 @@ public interface BoardDao {
 	public abstract void insert(BoardVO boardVO);
 	public abstract BoardVO select(int seq);
 	public abstract List<BoardVO> search(String search);
+	public abstract void delete(int seq);
+	public abstract BoardVO searchBoard(int seq);
 }

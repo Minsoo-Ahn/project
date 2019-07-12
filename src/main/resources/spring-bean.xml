@@ -31,6 +31,7 @@
 			<list>
 				<value>classpath:config/sqlmap-board.xml</value>
 				<value>classpath:config/sqlmap-member.xml</value>
+				<value>classpath:config/sqlmap-boardLike.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -57,5 +58,12 @@
 	</bean>
 	<bean id="memberServiceMine" class="project.service.MemberServiceMine">
 		<property name="memberDao" ref="memberDao"/>
+	</bean>
+	
+	<bean id="boardLikeDao" class="project.dao.BoardLikeDaoMine">
+		<constructor-arg ref="sqlSessionTemplate"/>
+	</bean>
+	<bean id="boardLikeServiceMine" class="project.service.BoardLikeServiceMine">
+		<property name="boardLikeDao" ref="boardLikeDao"/>
 	</bean>
 </beans>

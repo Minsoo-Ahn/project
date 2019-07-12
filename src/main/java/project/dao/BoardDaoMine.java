@@ -40,6 +40,16 @@ public class BoardDaoMine implements BoardDao{
 	public List<BoardVO> search(String search) {
 		return sqlSessionTemplate.selectList("search",search); 
 	}
+	@Override
+	public void delete(int seq) {
+		sqlSessionTemplate.delete("delete",seq);
+		
+	}
+	@Override
+	public BoardVO searchBoard(int seq) {
+		BoardVO vo = (BoardVO) sqlSessionTemplate.selectOne("searchBoard", seq);
+		return vo;
+	}
 
 
 	

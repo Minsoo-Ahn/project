@@ -11,4 +11,6 @@ public interface BoardService {
 	public abstract void write(BoardVO booksVO);
 	public abstract BoardVO read(int seq);
 	public abstract List<BoardVO> search(String search);
+	public abstract void delete(int seq);
+	public abstract BoardVO searchBoard(int seq);
 }

@@ -12,6 +12,7 @@
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="css/main.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
+
 </head>
 <body>
 <form action="<c:url value="/main" />" method="post" class="form-inline" role="form">
@@ -104,7 +105,7 @@
 		</tr>
 		<tr>
 			<td class="text-left"><button class="btn btn-default"><img alt="like" src="img/like.png" width="20" height="20"><strong>${board.num }</strong></button></td>
-			<td class="text-right"><button class="btn btn-warning">수정</button>&nbsp;&nbsp;<button class="btn btn-danger">삭제</button></td>
+			<td class="text-right"><button class="btn btn-danger" type="button" onclick="location.href='<c:url value="/boardDelete/${board.seq }"/>'">삭제</button></td>
 		</tr>
 		<tr>
 		<td class="text-right" colspan="2">
