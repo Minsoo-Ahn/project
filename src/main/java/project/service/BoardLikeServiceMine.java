@@ -35,4 +35,10 @@ public class BoardLikeServiceMine implements BoardLikeService{
 		return count;
 	}
 
+	@Override
+	public void updateCount(int seq) {
+		boardLikeDao.updateCount(seq);
+		
+	}
+
 }

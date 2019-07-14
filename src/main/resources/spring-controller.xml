@@ -12,7 +12,6 @@
 	
 	<bean id="boardLikeController" class="project.controller.BoardLikeController">
 		<property name="boardLikeService" ref="boardLikeServiceMine"/>
-		<property name="boardService" ref="boardServiceMine"/>
 	</bean>		
 	<bean id="boardController" class="project.controller.BoardController">
 		<property name="boardService" ref="boardServiceMine"/>

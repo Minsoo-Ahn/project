@@ -4,19 +4,23 @@
 
 <mapper namespace="boardLikeDao">
 	<insert id="addLike" parameterType="boardLikeVO">
-		insert into boardlike	(seq, id)
+		insert into boardlike	(id, seq)
 		values(	#{id}, #{seq})
 	</insert>
 	
 	<delete id="deleteLike" parameterType="boardLikeVO">
-		delete from boardlike where seq = #{seq} and id = ${id}
+		delete from boardlike where seq = #{seq} and id = #{id}
 	</delete>
 	
-	<select id="countLike" parameterType="Integer">
+	<select id="countLike" parameterType="Integer" resultType="java.lang.Integer">
 		 select count(id) from boardlike where seq = #{seq} 
 	</select>
 	
-	<select id="searchId" parameterType="boardLikeVO">
+	<select id="searchId" parameterType="boardLikeVO" resultType="java.lang.Integer">
 		 select count(*) from boardlike where seq = #{seq} and id =#{id} 
 	</select>
+	
+	<update id="updateCount" parameterType="Integer">
+		update proboard set num = (select count(*) from boardlike where seq = #{seq}) where seq = #{seq} 
+	</update>
 </mapper>

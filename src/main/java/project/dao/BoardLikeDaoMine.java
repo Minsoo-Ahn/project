@@ -39,4 +39,10 @@ public class BoardLikeDaoMine implements BoardLikeDao{
 		return count;
 	}
 
+	@Override
+	public void updateCount(int seq) {
+		sqlSessionTemplate.update("updateCount",seq);
+		
+	}
+
 }

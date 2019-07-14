@@ -12,10 +12,15 @@
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="css/main.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
+<script type="text/javascript">
 
+var check = "${check}";
+alert(check);
+</script>
 </head>
 <body>
 <form action="<c:url value="/main" />" method="post" class="form-inline" role="form">
+<input type="text" id="like" value="${like }" hidden="true">
       <div class="section">
             <div class="container">
                 <div class="row">
@@ -88,7 +93,7 @@
         <table class="table" style="margin-left: auto; margin-right: auto; margin-top: 15px;">
 		<thead>
 		<tr>
-			<th><h4><strong>작성자 : ${board.id }</strong></h4></th>
+			<th><h4><strong>${board.id }</strong></h4></th>
 		</tr>
 		</thead>
 		<tbody>
@@ -104,7 +109,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="text-left"><button class="btn btn-default"><img alt="like" src="img/like.png" width="20" height="20"><strong>${board.num }</strong></button></td>
+			<td class="text-left"><button class="btn btn-default" type ="button" onclick="location.href='<c:url value="/boardLike/${board.seq }"/>'"><img alt="like" src="img/like.png" width="20" height="20"><strong>${board.num }</strong></button></td>
 			<td class="text-right"><button class="btn btn-danger" type="button" onclick="location.href='<c:url value="/boardDelete/${board.seq }"/>'">삭제</button></td>
 		</tr>
 		<tr>
