@@ -96,7 +96,7 @@
          </thead>
         <c:forEach var="list" items="${memberList }" varStatus="loop">
         <tr>
-        <td class="text-left"><span style="color:blue">${list.id}</span></td><td class="text-center"> ${list.name }</td><td class="text-right"><button class="btn btn-default" type="button" onclick="location.href='<c:url value="/friendRequest"/>'">Request</button><td><hr>
+        <td class="text-left"><span style="color:blue">${list.id}</span></td><td class="text-center"> ${list.name }</td><td class="text-right"><button class="btn btn-default" type="button" onclick="location.href='<c:url value="/friendRequest/${list.id }"/>'">Request</button><td>
         </c:forEach>
         </table>
         <h4 class="text-center">Postings</h4>
@@ -121,7 +121,11 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="text-left"><button class="btn btn-default" type ="button" onclick="location.href='<c:url value="/boardLike/${board.seq }"/>'"><img alt="like" src="img/like.png" width="20" height="20"><strong>${board.num }</strong></button></td>
+			<td class="text-left"><button class="btn btn-default" type="button" id="btn${board.seq }" >
+
+
+			<img id ="img${board.seq }"  alt="like" src="img/like.png" width="20" height="20">&nbsp;&nbsp;
+			<strong id="likes${board.seq }">${board.num }</strong></button></td>
 			<td class="text-right"><button class="btn btn-danger" type="button" onclick="location.href='<c:url value="/boardDelete/${board.seq }"/>'">삭제</button></td>
 		</tr>
 		<tr>
@@ -168,7 +172,35 @@
                 </div>
             </div>
         </footer>
+    <script>
+    	
     
+    $("[id^=btn]").on('click', function(event){
+    	var id = $(this).attr("id"); 
+    	var seq = id.replace("btn", "");
+    	
+    	$.ajax({
+    		url: "<c:url value="/boardLike"/>",
+    		type: "post", 
+    		data: 'seq='+seq,
+    		success: function(data){
+    		
+    			if(data.check == 0){
+    				$('#img'+seq).attr('src', 'img/heart.png');
+    				$('#likes'+seq).text(data.likes);
+    			}else if(data.check ==1){
+    				$('#img'+seq).attr('src', 'img/like.png');
+    				$('#likes'+seq).text(data.likes);
+    			}
+    			if(data.msg != null){
+    				alert(data.msg);
+    				location.href='<c:url value="/login"/>';
+    			}
+    		}
+    	})
+    	})
+
+    </script>
 </form>
 </body>
 </html>

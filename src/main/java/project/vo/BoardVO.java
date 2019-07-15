@@ -13,7 +13,14 @@ public class BoardVO {
 	private int num;
 	private Timestamp regDate;
 	private String image;
+	private int likeCheck; 
 	
+	public int getLikeCheck() {
+		return likeCheck;
+	}
+	public void setLikeCheck(int likeCheck) {
+		this.likeCheck = likeCheck;
+	}
 	public int getSeq() {
 		return seq;
 	}

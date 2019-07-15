@@ -1,5 +1,7 @@
 package project.dao;
 
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 
 import project.vo.BoardLikeVO;
@@ -42,6 +44,12 @@ public class BoardLikeDaoMine implements BoardLikeDao{
 	@Override
 	public void updateCount(int seq) {
 		sqlSessionTemplate.update("updateCount",seq);
+		
+	}
+
+	@Override
+	public void checkLike(Map<String, Object> map) {
+		sqlSessionTemplate.update("checkLike", map);
 		
 	}
 

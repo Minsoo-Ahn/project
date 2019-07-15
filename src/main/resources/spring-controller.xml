@@ -18,6 +18,9 @@
 	</bean>					
 	<bean id="memberController" class="project.controller.MemberController">
 		<property name="memberService" ref="memberServiceMine"/>
+	</bean>	
+	<bean id="friendController" class="project.controller.FriendController">
+		<property name="friendService" ref="friendServiceMine"/>
 	</bean>					
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="100000000"/>

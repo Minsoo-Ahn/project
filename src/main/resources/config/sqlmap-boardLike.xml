@@ -7,7 +7,7 @@
 		insert into boardlike	(id, seq)
 		values(	#{id}, #{seq})
 	</insert>
-	
+
 	<delete id="deleteLike" parameterType="boardLikeVO">
 		delete from boardlike where seq = #{seq} and id = #{id}
 	</delete>
@@ -22,5 +22,9 @@
 	
 	<update id="updateCount" parameterType="Integer">
 		update proboard set num = (select count(*) from boardlike where seq = #{seq}) where seq = #{seq} 
+	</update>
+	
+	<update id="checkLike" parameterType="map">
+		update proboard set likecheck = #{check} where seq = #{seq} 
 	</update>
 </mapper>

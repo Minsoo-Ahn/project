@@ -1,5 +1,7 @@
 package project.service;
 
+import java.util.Map;
+
 import project.dao.BoardLikeDao;
 import project.vo.BoardLikeVO;
 
@@ -38,6 +40,12 @@ public class BoardLikeServiceMine implements BoardLikeService{
 	@Override
 	public void updateCount(int seq) {
 		boardLikeDao.updateCount(seq);
+		
+	}
+
+	@Override
+	public void checkLike(Map<String, Object> map) {
+		boardLikeDao.checkLike(map);
 		
 	}
 

@@ -36,14 +36,14 @@ public class BoardController {
 	
 	
 	@RequestMapping(value="/main", method=RequestMethod.GET)
-	public String list(Model model) {
+	public String list(BoardVO boardVO,Model model) {
 		model.addAttribute("boardList", boardService.list());
-		JSONObject obj = new JSONObject();
+		
 		return "/main";
 	}
 	
 	@RequestMapping(value="/main", method=RequestMethod.POST)
-	public String list(MemberVO memberVO,SearchCommand searchCommand,Model model) {
+	public String list(BoardVO boardVO, MemberVO memberVO,SearchCommand searchCommand,Model model) {
 		if( !searchCommand.getSearch().equals("")) {
 			model.addAttribute("boardList",boardService.search(searchCommand.getSearch()) );
 			List<String> idList = boardService.idList(searchCommand.getSearch());

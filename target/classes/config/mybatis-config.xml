@@ -12,5 +12,6 @@
 		<typeAlias alias="memberVO" type="project.vo.MemberVO"/>
 		<typeAlias alias="boardVO" type="project.vo.BoardVO"/>
 		<typeAlias alias="boardLikeVO" type="project.vo.BoardLikeVO"/>
+		<typeAlias alias="friendVO" type="project.vo.FriendVO"/>
 	</typeAliases>
 </configuration>
