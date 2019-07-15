@@ -13,9 +13,6 @@
         <link href="css/main.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
 <script type="text/javascript">
-
-var check = "${check}";
-alert(check);
 </script>
 </head>
 <body>
@@ -89,8 +86,23 @@ alert(check);
         <div class="section"><div class="container"><div class="row"><div class="col-md-3"><div class="col-md-12">  <h1>Friends list</h1> <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet.</p></div></div>
         
         <div class="col-md-7 text-center" style="white-space:pre;"><div class="col-md-12"> 
+        <c:if test="${memberList != null }">
+        <h4 class="text-center">Search List</h4>
+         <table class="table" style="margin-left: auto; margin-right: auto; margin-top: 15px;">
+         <thead>
+         	<tr>
+         		<td class="text-left">ID</td> <td class="text-center">Name</td> <td class="text-right">Friend request</td>
+         	</tr>
+         </thead>
+        <c:forEach var="list" items="${memberList }" varStatus="loop">
+        <tr>
+        <td class="text-left"><span style="color:blue">${list.id}</span></td><td class="text-center"> ${list.name }</td><td class="text-right"><button class="btn btn-default" type="button" onclick="location.href='<c:url value="/friendRequest"/>'">Request</button><td><hr>
+        </c:forEach>
+        </table>
+        <h4 class="text-center">Postings</h4>
+        </c:if>
         <c:forEach var="board" items="${boardList }" varStatus="loop">
-        <table class="table" style="margin-left: auto; margin-right: auto; margin-top: 15px;">
+        <table class="table" style="margin-left: auto; margin-right: auto;">
 		<thead>
 		<tr>
 			<th><h4><strong>${board.id }</strong></h4></th>

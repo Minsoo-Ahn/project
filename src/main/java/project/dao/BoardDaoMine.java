@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import project.vo.BoardVO;
+import project.vo.MemberVO;
 
 
 
@@ -50,6 +51,17 @@ public class BoardDaoMine implements BoardDao{
 		BoardVO vo = (BoardVO) sqlSessionTemplate.selectOne("searchBoard", seq);
 		return vo;
 	}
+	@Override
+	public List<String> idList(String search) {
+		return sqlSessionTemplate.selectList("idList",search);
+	}
+	
+	@Override
+	public MemberVO searchMember(String id) {
+		return sqlSessionTemplate.selectOne("searchMember",id);
+	}
+	
+
 
 
 	

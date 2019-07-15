@@ -23,7 +23,6 @@ public class BoardLikeController {
 	public void setBoardLikeService(BoardLikeService boardLikeService) {
 		this.boardLikeService = boardLikeService;
 	}
-	@ResponseBody
 	@RequestMapping(value="/boardLike/{seq}", method=RequestMethod.GET)
 	public String boardLike(BoardLikeVO like,Model model, @PathVariable int seq, HttpSession session) {
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");

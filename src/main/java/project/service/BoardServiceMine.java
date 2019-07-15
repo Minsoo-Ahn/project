@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import project.dao.BoardDao;
 import project.vo.BoardVO;
+import project.vo.MemberVO;
 
 @Service
 public class BoardServiceMine implements BoardService{
@@ -54,6 +55,17 @@ public class BoardServiceMine implements BoardService{
 	public BoardVO searchBoard(int seq) {
 		
 		return boardDao.searchBoard(seq);
+	}
+
+	@Override
+	public List<String> idList(String search) {
+		return boardDao.idList(search);
+	}
+
+	@Override
+	public MemberVO searchMember(String id) {
+		
+		return boardDao.searchMember(id);
 	}
 	
 }

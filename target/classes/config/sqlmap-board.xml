@@ -28,8 +28,14 @@
 	</select>
 	
 	-->
+	<select id="searchMember" parameterType ="String" resultType="memberVO">
+		select * from promember where id = #{id}
+	</select>
 	<select id="search" parameterType="String" resultType="boardVO">
 		select * from proboard where id like '%'||#{search}||'%' order by regdate desc
+	</select>
+	<select id="idList" parameterType="String" resultType="java.lang.String">
+		select distinct id from proboard where id like '%'||#{search}||'%'
 	</select>
 	<select id="list" resultType="boardVO">
 		select * from proboard

@@ -47,7 +47,11 @@ public class MemberController {
 	public String login(HttpServletRequest request, Model model) {
 		Cookie cookies[] = request.getCookies();
 		if(cookies.length != 1) {
-			model.addAttribute("id", cookies[1].getValue());
+			for(int i=0; i<cookies.length; i++) {
+					if(cookies[i].getName().equals("cookie")) {
+						model.addAttribute("id",cookies[i].getValue());
+					}
+			}
 		}
 		return "/login";
 	}
