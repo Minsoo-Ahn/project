@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="friendDao">
+	<insert id="addFriend" parameterType="friendVO">
+		insert into profriend values(#{id1}, #{id2}, #{relationship})
+	</insert>
+	<delete id="deleteFriend" parameterType="friendVO">
+		delete from profriend where id1= #{id1}, id2 =#{id2}, relationship= #{relationship})
+	</delete>
+	
+	<select id="countPending" parameterType="String" resultType="java.lang.Integer">
+		select count(*) from profriend where id2= #{id} and relationship='pending'
+	</select>
+	<select id="checkFriend" parameterType="friendVO" resultType="java.lang.Integer">
+		select count(*) from profriend where id1= #{id1} and id2= #{id2}
+	</select>
+	<select id="pendingList" parameterType="String" resultType="java.lang.String">
+		select distinct id1 from profriend where id2= #{id} and relationship='pending'
+	</select>
+	
+	<update id="updateFriend" parameterType="friendVO">
+		update profriend set relationship = #{relationship} where id1 = #{id1} and id2 = #{id2} 
+	</update>
+</mapper>

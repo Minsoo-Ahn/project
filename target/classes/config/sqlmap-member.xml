@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="memberDao">
+	<insert id="add" parameterType="memberVO">
+		insert into promember (id, password, name,phone, email)
+		values (#{id},#{password}, #{name}, #{phone}, #{email})
+		
+	</insert>
+	
+	<select id="selectById" parameterType="String" resultType="memberVO">
+		select * from promember where id=#{id}
+	</select>
+		<update id="accountSetting" parameterType="memberVO">
+		update promember set name = #{name}, password = #{password}, phone = #{phone}, email =#{email}
+		where id = #{id}
+	</update>
+</mapper>
