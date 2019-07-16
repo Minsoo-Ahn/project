@@ -1,5 +1,7 @@
 package project.service;
 
+import java.util.List;
+
 import project.dao.MemberDao;
 import project.vo.MemberVO;
 
@@ -28,5 +30,14 @@ public class MemberServiceMine implements MemberService{
 		memberDao.accontSetting(memberVO);
 		
 	}
+	@Override
+	public List<String> friendId(String id) {
+		return memberDao.friendId(id);
+	}
 	
+
+	@Override
+	public int countPending(String id) {
+		return memberDao.countPending(id);
+	}
 }

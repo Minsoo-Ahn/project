@@ -1,5 +1,7 @@
 package project.service;
 
+import java.util.List;
+
 import project.dao.FriendDao;
 import project.vo.FriendVO;
 
@@ -21,5 +23,25 @@ public class FriendServiceMine implements FriendService{
 		friendDao.delete(friendVO);
 		
 	}
+
+
+	@Override
+	public List<String> pendingList(String id) {
+
+		return friendDao.pendingList(id);
+	}
+
+	@Override
+	public void update(FriendVO friendVO) {
+		friendDao.update(friendVO);
+		
+	}
+
+	@Override
+	public int checkFriend(FriendVO friendVO) {
+		return friendDao.checkFriend(friendVO);
+	}
+
+
 
 }

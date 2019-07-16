@@ -67,9 +67,12 @@ public class BoardController {
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String write(HttpServletRequest rq, BoardVO boardVO, @RequestParam("fileName")MultipartFile mf,HttpSession session, Model model) throws IllegalStateException, IOException {
 		if(!mf.getOriginalFilename().equals("")) {
-		String path = rq.getSession().getServletContext().getRealPath("/upload");
+		String path = rq.getSession().getServletContext().getRealPath("uploads");
+		String path2 = "D:\\반응형웹개발자\\Spring\\springwork\\project\\src\\main\\webapp\\uploads";
 		boardVO.setImage(mf.getOriginalFilename());
 		mf.transferTo(new File(path , mf.getOriginalFilename()));
+		mf.transferTo(new File(path2 , mf.getOriginalFilename()));
+		model.addAttribute("path",path);
 		}
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		if(memberVO == null) {

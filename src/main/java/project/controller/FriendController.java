@@ -1,5 +1,8 @@
 package project.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -29,8 +32,55 @@ public class FriendController {
 		}
 		friendVO.setId1(memberVO.getId());
 		friendVO.setId2(id);
+		friendVO.setRelationship("pending");
+		if(friendService.checkFriend(friendVO) != 0) {
+			return "redirect:/main";
+		}
+		friendService.add(friendVO);
+		return "redirect:/main";
+	}
+	
+	@RequestMapping(value="/requestList", method=RequestMethod.GET)
+	public String requestList(HttpSession session, Model model) {
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		if(memberVO ==null) {
+			return "redirect:/login";
+		}
+		model.addAttribute("pendingList",friendService.pendingList(memberVO.getId()));
+		return "/requestList";
+	}
+	
+	@RequestMapping(value="/pendingAccept/{id}", method=RequestMethod.GET)
+	public String pendingAccept(FriendVO friendVO, HttpSession session, Model model, @PathVariable String id) {
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		if(memberVO ==null) {
+			return "redirect:/login";
+		}
+		friendVO.setId1(memberVO.getId());
+		friendVO.setId2(id);
 		friendVO.setRelationship("friend");
 		friendService.add(friendVO);
+		friendVO.setId1(id);
+		friendVO.setId2(memberVO.getId());
+		friendService.update(friendVO);
+		session.setAttribute("pending", (int)session.getAttribute("pending")-1);
+		return "redirect:/main";
+	}
+	
+	@RequestMapping(value="/pendingReject/{id}", method=RequestMethod.GET)
+	public String pendingReject(FriendVO friendVO, HttpSession session, Model model, @PathVariable String id) {
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		if(memberVO ==null) {
+			return "redirect:/login";
+		}
+		friendVO.setId1(memberVO.getId());
+		friendVO.setId2(id);
+		friendVO.setRelationship("rejected");
+		friendService.add(friendVO);
+		friendVO.setId1(id);
+		friendVO.setId2(memberVO.getId());
+		friendService.update(friendVO);
+		session.setAttribute("pending", (int)session.getAttribute("pending")-1);
 		return "redirect:/main";
 	}
 }

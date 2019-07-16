@@ -16,4 +16,5 @@ public interface BoardService {
 	public abstract BoardVO searchBoard(int seq);
 	public abstract List<String> idList(String search);
 	public abstract MemberVO searchMember(String id);
+
 }

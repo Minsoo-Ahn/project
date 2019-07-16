@@ -19,7 +19,7 @@ public class MemberVO {
 	@Email(message="Invalid Email form")
 	@Size(min=6, message="Invaild Email form")
 	private String email;
-	@Pattern(regexp="^\\d{3}-\\d{3,4}-\\d{4}$",message="Try again")
+	@Pattern(regexp="^\\d{3}-\\d{3,4}-\\d{4}$",message="010-1234-5678")
 	private String phone;
 	public String getId() {
 		return id;

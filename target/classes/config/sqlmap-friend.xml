@@ -10,9 +10,7 @@
 		delete from profriend where id1= #{id1}, id2 =#{id2}, relationship= #{relationship})
 	</delete>
 	
-	<select id="countPending" parameterType="String" resultType="java.lang.Integer">
-		select count(*) from profriend where id2= #{id} and relationship='pending'
-	</select>
+
 	<select id="checkFriend" parameterType="friendVO" resultType="java.lang.Integer">
 		select count(*) from profriend where id1= #{id1} and id2= #{id2}
 	</select>
@@ -23,4 +21,6 @@
 	<update id="updateFriend" parameterType="friendVO">
 		update profriend set relationship = #{relationship} where id1 = #{id1} and id2 = #{id2} 
 	</update>
+	
+
 </mapper>

@@ -60,7 +60,7 @@ public class BoardDaoMine implements BoardDao{
 	public MemberVO searchMember(String id) {
 		return sqlSessionTemplate.selectOne("searchMember",id);
 	}
-	
+
 
 
 

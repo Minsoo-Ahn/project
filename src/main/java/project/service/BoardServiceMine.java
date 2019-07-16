@@ -67,5 +67,7 @@ public class BoardServiceMine implements BoardService{
 		
 		return boardDao.searchMember(id);
 	}
+
+
 	
 }

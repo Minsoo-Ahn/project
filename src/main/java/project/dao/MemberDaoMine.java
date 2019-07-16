@@ -1,5 +1,7 @@
 package project.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 
 import project.vo.MemberVO;
@@ -25,6 +27,16 @@ public class MemberDaoMine implements MemberDao{
 	@Override
 	public void accontSetting(MemberVO memberVO) {
 		sqlSessionTemplate.update("accountSetting", memberVO);
+		
+	}
+	@Override
+	public List<String> friendId(String id) {
+		return sqlSessionTemplate.selectList("friendId",id);
+	}
+	
+	@Override
+	public int countPending(String id) {
+		return sqlSessionTemplate.selectOne("countPending", id);
 		
 	}
 

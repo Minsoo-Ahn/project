@@ -74,4 +74,5 @@
 	<bean id="friendServiceMine" class="project.service.FriendServiceMine">
 		<property name="friendDao" ref="friendDao"/>
 	</bean>
+	
 </beans>

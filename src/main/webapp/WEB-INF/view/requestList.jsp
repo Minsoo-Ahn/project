@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="jumbotron">
-                            <h1>HappyStory♣</h1>
+                            <h1>Welcome to My SNS</h1>
                         </div>
                     </div>
                 </div>
@@ -75,86 +75,29 @@
             </div><br>
         <div class="col-md-8"></div><div class=" col-md-4 text-left">
         <input type="text" class="form-control" name ="search" placeholder="Search your friends"><button class="btn btn-default btn-xs" type="submit"><img alt="search" src="img/search.jpg" width="30" height="30"></button>
-        &nbsp;&nbsp;&nbsp;<a href="<c:url value="/requestList"/>"><img alt="alert" src="img/notification.png" width="30" height="30">&nbsp;&nbsp;<strong>${pending }</strong></a></div>
+        &nbsp;&nbsp;&nbsp;<a href="<c:url value="/requestList"/>"><img alt="alert" src="img/notification.png" width="30" height="30"></a></div>
         
         </div>
         <div class="col-md-6">
 		</div>
+		<button class="btn btn-default" onclick="history.go(0)">Refresh</button>
         <div class="container">
-        <div class="section"><div class="container"><div class="row"><div class="col-md-2"> 
+        <div class="section"><div class="container"><div class="row"><div class="col-md-3"><div class="col-md-12">  <h1>Friends list</h1> <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet.</p></div></div>
         
-        </div>
-        
-        <div class="col-md-7 text-center" style="white-space:pre;">
-        <c:if test="${memberList != null }">
-        <h4 class="text-center">Search List</h4>
+        <div class="col-md-7 text-center" style="white-space:pre;"><div class="col-md-12"> 
+      <h4 class="text-center">Search List</h4>
          <table class="table" style="margin-left: auto; margin-right: auto; margin-top: 15px;">
          <thead>
          	<tr>
-         		<td class="text-left">ID</td> <td class="text-center">Name</td> <td class="text-right">Friend request</td>
+         		<td class="text-left">ID</td>  <td class="text-right">Request</td>
          	</tr>
          </thead>
-        <c:forEach var="list" items="${memberList }" varStatus="loop">
+        <c:forEach var="list" items="${pendingList }" varStatus="loop">
         <tr>
-        <td class="text-left"><span style="color:blue">${list.id}</span></td><td class="text-center"> ${list.name }</td><td class="text-right"><button class="btn btn-default" type="button" onclick="location.href='<c:url value="/friendRequest/${list.id }"/>'">Request</button><td>
+        <td class="text-left"><span style="color:blue">${list}</span></td><td class="text-right"><button class="btn btn-success btn-s" type="button" onclick="location.href='<c:url value="/pendingAccept/${list}"/>'">Accept</button>   <button class="btn btn-danger btn-s" type="button" onclick="location.href='<c:url value="/pendingReject/${list}"/>'">Reject</button></td>
         </c:forEach>
         </table>
-        <h4 class="text-center">Postings</h4>
-        </c:if>
-        <c:forEach var="board" items="${boardList }" varStatus="loop">
-        <table class="table" style="margin-left: auto; margin-right: auto;">
-		<thead>
-		<tr>
-			<th><h4><strong>${board.id }</strong></h4></th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr>
-			<td class="text-left" colspan="2">${board.regDate }</td>
-		</tr>
-		<tr>
-			<td class="text-left " colspan="2">${board.content }
-
-		<c:if test="${board.image != null }">
-			<img src="uploads/${board.image }" width="400" height="300">
-		</c:if>
-			</td>
-		</tr>
-		<tr>
-			<td class="text-left"><button class="btn btn-default" type="button" id="btn${board.seq }" >
-
-
-			<img id ="img${board.seq }"  alt="like" src="img/like.png" width="20" height="20">&nbsp;&nbsp;
-			<strong id="likes${board.seq }">${board.num }</strong></button></td>
-			<td class="text-right"><button class="btn btn-danger" type="button" onclick="location.href='<c:url value="/boardDelete/${board.seq }"/>'">삭제</button></td>
-		</tr>
-		<tr>
-		<td class="text-right" colspan="2">
-			<textarea class="form-control" style="resize:none" cols="58" rows="1" placeholder="Write a commnet..." name="comment"></textarea>&nbsp;&nbsp;<button class="btn btn-default">Send</button></td>
-		</tr>
-		</tbody>
-       </table>
-       <hr>
-	</c:forEach>
-        </div>
-        <div class="col-sm-3">
-         <c:if test="${friendList != null }">
-        <h1>Friends list</h1> <br><br>
-         <table class="table" style="margin-left: auto; margin-right: auto; margin-top: 15px;">
-         <thead>
-         	<tr>
-         		<td class="text-left">ID</td> <td class="text-center">Name</td> <td class="text-right">Chat</td>
-         	</tr>
-         </thead>
-        <c:forEach var="friend" items="${friendList }" varStatus="loop">
-        <tr>
-        <td class="text-left"><span style="color:blue">${friend.id}</span></td><td class="text-center"> ${friend.name }</td><td class="text-right"><button class="btn btn-default" type="button" onclick="location.href='<c:url value="#"/>'">Chat</button><td>
-        </c:forEach>
-        </table>
-        </c:if>
-       </div></div>
-         </div></div>
-       </div>
+        </div></div><div class="row"> </div></div></div></div></div>
         
         <footer class="section section-primary">
             <div class="container">
@@ -190,35 +133,7 @@
                 </div>
             </div>
         </footer>
-    <script>
-    	
-    
-    $("[id^=btn]").on('click', function(event){
-    	var id = $(this).attr("id"); 
-    	var seq = id.replace("btn", "");
-    	
-    	$.ajax({
-    		url: "<c:url value="/boardLike"/>",
-    		type: "post", 
-    		data: 'seq='+seq,
-    		success: function(data){
-    		
-    			if(data.check == 0){
-    				$('#img'+seq).attr('src', 'img/heart.png');
-    				$('#likes'+seq).text(data.likes);
-    			}else if(data.check ==1){
-    				$('#img'+seq).attr('src', 'img/like.png');
-    				$('#likes'+seq).text(data.likes);
-    			}
-    			if(data.msg != null){
-    				alert(data.msg);
-    				location.href='<c:url value="/login"/>';
-    			}
-    		}
-    	})
-    	})
 
-    </script>
 </form>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package project.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -29,4 +30,18 @@ public class FriendDaoMine implements FriendDao{
 		
 	}
 
+	@Override
+	public List<String> pendingList(String id) {
+		return sqlSessionTemplate.selectList("pendingList", id);
+	}
+	@Override
+	public void update(FriendVO friendVO) {
+		sqlSessionTemplate.update("updateFriend", friendVO);
+		
+	}
+	@Override
+	public int checkFriend(FriendVO friendVO) {
+		return sqlSessionTemplate.selectOne("checkFriend", friendVO);
+	}
+	
 }
