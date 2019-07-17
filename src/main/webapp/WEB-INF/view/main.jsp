@@ -34,7 +34,7 @@
                                 <a href="<c:url value="/main"/>">Home</a>
                             </li>
                             <li class="active">
-                                <a href="#">Profile</a>
+                                <a href="<c:url value="/profile"/>">Profile</a>
                             </li>
                             <li class="active">
                                 <a data-toggle="modal" href="<c:url value="/write"/>" data-target="#modal-testNew" role="button" data-backdrop="static" >Write</a>
@@ -140,7 +140,7 @@
 		</tr>
 		<tr>
 		<td class="text-right" colspan="2">
-			<textarea class="form-control" id="comments" style="resize:none" cols="58" rows="1" placeholder="Write a commnet..." ></textarea>&nbsp;&nbsp;<button class="btn btn-default" id="reply"  type="button" value="${board.seq }">Send</button></td>
+			<textarea class="form-control" id="comments${board.seq }" style="resize:none" cols="58" rows="1" placeholder="Write a commnet..." ></textarea>&nbsp;&nbsp;<button class="btn btn-default" id="reply${board.seq }"  type="button" ">Send</button></td>
 		</tr>
 		<c:if test="${commentList != null }">
 		<tr>
@@ -148,9 +148,12 @@
 			<h4>Comments</h4>
 		<c:forEach var="comment" items="${commentList }" varStatus="loop">
 			<c:if test="${comment.seq == board.seq }">
-			<span style="color:blue; font-size:11pt; font-weight: bold;">${comment.id }</span><div class="col-sm-1"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-right">${comment.regDate }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<button class="btn btn-default btn-s" type="button">Delete</button><br>
-			<div class="col-sm-1"></div>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp; <span style="font-size:11pt;">${comment.comments }</span><hr/>
+			<span style="color:blue; font-size:13pt; font-weight: bold;">${comment.id }</span><div class="col-sm-1"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="text-align:right; font-size:12pt;" >${comment.regDate }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<c:if test="${comment.id  == member.id }">
+			<button class="btn btn-danger btn-xs" type="button" id="delete${comment.replySeq }" >x</button>
+			</c:if>
+			<br>
+			<div class="col-sm-1"></div>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp; <span style="font-size:13pt;">${comment.comments }</span><hr/>
 			</c:if>
 		</c:forEach></td></tr>
 			</c:if>
@@ -175,24 +178,13 @@
                             <br>Ut enim ad minim veniam, quis nostrud</p>
                     </div>
                     <div class="col-sm-6">
-                        <p2 class="text-info text-right">
-                            <br>
-                            <br>
-                        </p>
-                        <div class="row">
-                            <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
-                                <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
-                                <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
-                                <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
-                                <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
-                            </div>
-                        </div>
+                        
+                        
                         <div class="row">
                             <div class="col-md-12 hidden-xs text-right">
-                                <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
-                                <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
-                                <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
-                                <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+                                <a href="http://www.instagram.com"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
+                                <a href="http://www.instagram.com"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
+                                <a href="https://github.com/myrroomm/"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
                             </div>
                         </div>
                     </div>
@@ -228,9 +220,10 @@
     	})
 
     	//Reply value transfer
-    	$("#reply").on('click', function(){
-    		var seq = $('#reply').attr('value');
-    		var comment = $('#comments').val()
+    	$("[id^=reply]").on('click', function(){
+    		var id = $(this).attr('id');
+    		var seq= id.replace("reply", "");
+    		var comment = $('#comments'+seq).val()
     		var alldata = {"seq":seq , "comments":comment};
     		
     		$.ajax({
@@ -247,6 +240,25 @@
         			}
         		}
         	})
+    	})
+    	//Reply delete
+    	
+    	$("[id^=delete]").on('click', function(){
+    		var id = $(this).attr('id');
+    		var replySeq= id.replace("delete", "");
+    		var check = confirm("Want to delete this reply?");
+    		if(check){
+    		$.ajax({
+        		url: "<c:url value="/replyDelete"/>",
+        		type: "post", 
+        		data: "replySeq="+replySeq,
+        		success: function(data){
+        			if(data.success != null){
+     				alert(data.success);
+     				location.href='<c:url value="/main"/>';
+        			}
+        		}
+        	})}
     	})
     	
     </script>

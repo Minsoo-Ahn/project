@@ -5,11 +5,11 @@
 <mapper namespace="replyDao">
 	<insert id="addReply" parameterType="replyVO">
 		insert into reply	
-		values(	#{id},sysdate,#{comments}, #{seq})
+		values(	#{id},sysdate,#{comments}, #{seq}, reply_seq.nextval)
 	</insert>
 
-	<delete id="deleteReply" parameterType="replyVO">
-		delete from reply where seq = #{seq} and id = #{id}
+	<delete id="deleteReply" parameterType="Integer">
+		delete from reply where replyseq = #{replySeq}
 	</delete>
 	
 	

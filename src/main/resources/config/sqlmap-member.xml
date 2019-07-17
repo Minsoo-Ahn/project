@@ -12,7 +12,7 @@
 	<select id="selectById" parameterType="String" resultType="memberVO">
 		select * from promember where id=#{id}
 	</select>
-		<update id="accountSetting" parameterType="memberVO">
+	<update id="accountSetting" parameterType="memberVO">
 		update promember set name = #{name}, password = #{password}, phone = #{phone}, email =#{email}
 		where id = #{id}
 	</update>
@@ -23,4 +23,8 @@
 	<select id="friendId" parameterType="String" resultType="java.lang.String">
 		select id2 from profriend where id1= #{id} and relationship='friend'
 	</select>
+	<update id="uploadImage" parameterType="memberVO">
+		update promember set image = #{image} where id=#{id}
+	</update>
+	
 </mapper>

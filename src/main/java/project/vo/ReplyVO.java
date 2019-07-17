@@ -10,7 +10,14 @@ public class ReplyVO {
 	private Timestamp regDate;
 	private String comments;
 	private int seq;
+	private int replySeq;
 	
+	public int getReplySeq() {
+		return replySeq;
+	}
+	public void setReplySeq(int replySeq) {
+		this.replySeq = replySeq;
+	}
 	public String getId() {
 		return id;
 	}

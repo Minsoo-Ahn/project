@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +10,7 @@
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="css/signup.css" rel="stylesheet" type="text/css">
+        <link href="css/profile.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -71,71 +71,54 @@
                 
             </div>
         </div>
+        <form action="<c:url value="/imageUpload"/>" method="post" enctype="multipart/form-data"  role="form">
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
-                        <form:form commandName="memberVO" class="form-horizontal" role="form"  method="post">
-                            <div class="form-group has-feedback"><div class="col-sm-2"><label for="inputEmail3" class="control-label">ID</label></div>
-                                
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="id" name="id" value="${member.id }" readonly>
-                                   <span style="color:red"><form:errors path="id" /> </span>
-                                </div>
-                                
-                            <div class="col-sm-offset-2 col-sm-10"><p class="help-block">
-							</p></div></div>
-                            <div class="form-group has-feedback">
-                                <div class="col-sm-2">
-                                    <label for="inputEmail3" class="control-label">Password</label>
-                                </div>
-                                <div class="col-sm-10">
-                                    <input type="password" class="form-control" name="password" id="password" placeholder="New Password">
-                                </div>
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <p class="help-block">
-Passwords must be at least 6 characters.</p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-2">
-                                    <label class="control-label">Name</label>
-                                </div>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" placeholder="New Name" name="name" value="${member.name }">
-                                    <span style="color:red"><form:errors path="name" /> </span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-2">
-                                    <label class="control-label">Email</label>
-                                </div>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" placeholder="New Email" name="email" value="${member.email }">
-                                    <span style="color:red"><form:errors path="email" /> </span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-2">
-                                    <label class="control-label">Phone</label>
-                                </div>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" placeholder="New Phone" name="phone" value="${member.phone }">
-                                    <span style="color:red"><form:errors path="phone" /> </span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-10 col-sm-offset-2 text-right">
-                                    <button type="submit" class="active btn btn-success">Change</button>
-                                    <button type="reset" class="active btn btn-warning">Reset</button>
-                                    <button  type="button" class="active btn btn-default" onclick="location.href='<c:url value="/main"/>'">Cancel</button>
-                                </div>
-                            </div>
-                        </form:form>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-7">
+                    	<label for="imageUpload" >
+                    	<c:if test="${member.image !=null }">
+                    	<img src="uploads/${member.image }" height ="300" width="240">
+                    	</c:if>
+                    	<c:if test="${member.image ==null }">
+                    	<img src="img/person.png" height ="300" width="240">
+                    	</c:if>
+                    	</label><br>
+                    	<input type="file" id="imageUpload" value="" hidden="true">
+                    	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click the image to change a picture!</p>
+                    	<button id="button">button</button>
                     </div>
                 </div>
+        <br><hr><br>
+       	<div class="col-sm-3"></div>
+                    	<table>
+                    	<tbody style="font-size:20px;">
+                    		<tr>
+                    			<th class="text-left" width="400" height="50">ID</th>
+                    			<td></td>
+                 			<td class="text-left">${member.id }</td>
+                    		</tr>
+                    		<tr>
+                    			<th class="text-left" height="50">Name</th>
+                    			<td></td>
+                    			<td class="text-left">${member.name }</td>
+                    		</tr>
+                    		<tr>
+                    			<th class="text-left" height="50">Phone</th>
+                    			<td></td>
+                    			
+                    			<td class="text-left">${member.phone }</td>
+                    		</tr>
+                    		<tr>
+                    			<th class="text-left" height="50">Email</th>
+                    			<td></td>
+                    			<td class="text-left">${member.email }</td>
+                    		</tr>
+                    	</tbody>
+                    	</table>
             </div>
-        </div>
+       	</div>
         <footer class="section section-primary">
             <div class="container">
                 <div class="row">
@@ -163,6 +146,10 @@ Passwords must be at least 6 characters.</p>
                 </div>
             </div>
         </footer>
+  	</form>
     
 </body>
+<script>
+
+</script>
 </html>

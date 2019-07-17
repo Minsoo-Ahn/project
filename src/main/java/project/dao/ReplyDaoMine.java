@@ -21,9 +21,9 @@ public class ReplyDaoMine implements ReplyDao{
 	}
 
 	@Override
-	public void deleteReply(ReplyVO replyVO) {
+	public void deleteReply(int replySeq) {
 		
-		sqlSessionTemplate.delete("deleteReply", replyVO);
+		sqlSessionTemplate.delete("deleteReply", replySeq);
 	}
 	
 }

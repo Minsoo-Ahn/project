@@ -148,4 +148,13 @@ public class MemberController {
 		session.removeAttribute("member");
 			return  "redirect:/main";
 	}
+	
+	@RequestMapping(value="/profile", method=RequestMethod.GET)
+	public String profile(HttpSession session) {
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		if(member ==null) {
+			return "/login";
+		}
+			return "/profile";
+	}
 }

@@ -40,4 +40,9 @@ public class MemberServiceMine implements MemberService{
 	public int countPending(String id) {
 		return memberDao.countPending(id);
 	}
+	@Override
+	public void uploadImage(MemberVO memberVO) {
+		memberDao.uploadImage(memberVO);
+		
+	}
 }

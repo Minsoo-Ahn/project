@@ -2,6 +2,7 @@ package project.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import project.vo.MemberVO;
@@ -37,6 +38,11 @@ public class MemberDaoMine implements MemberDao{
 	@Override
 	public int countPending(String id) {
 		return sqlSessionTemplate.selectOne("countPending", id);
+		
+	}
+	@Override
+	public void uploadImage(MemberVO memberVO) {
+		sqlSessionTemplate.update("uploadImage");
 		
 	}
 

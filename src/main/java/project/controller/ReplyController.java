@@ -26,7 +26,7 @@ public class ReplyController {
 	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping(value="/reply", method=RequestMethod.POST, produces = "application/json")
-	public String add(ReplyVO replyVO ,Model model, @RequestParam("seq") int seq,@RequestParam("comments") String comments, HttpServletRequest request, HttpSession session) {
+	public String add(ReplyVO replyVO , @RequestParam("seq") int seq,@RequestParam("comments") String comments, HttpServletRequest request, HttpSession session) {
 		JSONObject obj = new JSONObject();
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		if(memberVO ==null) {
@@ -42,6 +42,18 @@ public class ReplyController {
 		replyVO.setComments(comments);
 		replyService.addReply(replyVO);
 		obj.put("success", "Successfully commented!");
+		return obj.toJSONString();
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	@ResponseBody
+	@RequestMapping(value="/replyDelete", method=RequestMethod.POST, produces = "application/json")
+	public String delete(ReplyVO replyVO , @RequestParam("replySeq") int replySeq, HttpServletRequest request, HttpSession session) {
+		JSONObject obj = new JSONObject();
+
+		replyService.deleteReply(replySeq);
+		obj.put("success", "Successfully deleted!");
 		return obj.toJSONString();
 	}
 }

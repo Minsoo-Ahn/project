@@ -16,8 +16,8 @@ public class ReplyServiceMine implements ReplyService{
 	}
 
 	@Override
-	public void deleteReply(ReplyVO replyVO) {
-		replyDao.deleteReply(replyVO);
+	public void deleteReply(int replySeq) {
+		replyDao.deleteReply(replySeq);
 		
 	}
 	

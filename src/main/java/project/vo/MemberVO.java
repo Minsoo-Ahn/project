@@ -21,6 +21,13 @@ public class MemberVO {
 	private String email;
 	@Pattern(regexp="^\\d{3}-\\d{3,4}-\\d{4}$",message="010-1234-5678")
 	private String phone;
+	private String image;
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 	public String getId() {
 		return id;
 	}
