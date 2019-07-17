@@ -16,7 +16,7 @@
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 	destroy-method="close">	
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.160.130:1521:orcl"/>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.74.128:1521:orcl"/>
 		<property name="user" value="c##user"/>
 		<property name="password" value="1"/>
 		<property name="maxPoolSize" value="100"/>
@@ -33,6 +33,7 @@
 				<value>classpath:config/sqlmap-member.xml</value>
 				<value>classpath:config/sqlmap-boardLike.xml</value>
 				<value>classpath:config/sqlmap-friend.xml</value>
+				<value>classpath:config/sqlmap-reply.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -68,11 +69,17 @@
 		<property name="boardLikeDao" ref="boardLikeDao"/>
 	</bean>
 	
-		<bean id="friendDao" class="project.dao.FriendDaoMine">
+	<bean id="friendDao" class="project.dao.FriendDaoMine">
 		<constructor-arg ref="sqlSessionTemplate"/>
 	</bean>
 	<bean id="friendServiceMine" class="project.service.FriendServiceMine">
 		<property name="friendDao" ref="friendDao"/>
 	</bean>
 	
+	<bean id="replyDao" class="project.dao.ReplyDaoMine">
+		<constructor-arg ref="sqlSessionTemplate"/>
+	</bean>
+	<bean id="replyServiceMine" class="project.service.ReplyServiceMine">
+		<property name="replyDao" ref="replyDao"/>
+	</bean>
 </beans>

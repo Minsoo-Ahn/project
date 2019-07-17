@@ -27,7 +27,7 @@
           <div class="col-md-12">
             <ul class="nav nav-justified nav-pills">
               <li class="active">
-                <a href="#">Home</a>
+                <a href="<c:url value="/main"/>">Home</a>
               </li>
               <li class="active">
                 <a href="#">Profile</a>

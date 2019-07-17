@@ -78,17 +78,28 @@
         &nbsp;&nbsp;&nbsp;<a href="<c:url value="/requestList"/>"><img alt="alert" src="img/notification.png" width="30" height="30">&nbsp;&nbsp;<strong>${pending }</strong></a></div>
         
         </div>
-        <div class="col-md-6">
-		</div>
         <div class="container">
-        <div class="section"><div class="container"><div class="row"><div class="col-md-2"> 
-        
+        <div class="section"><div class="container"><div class="row"><div class="col-md-3"> 
+          <c:if test="${friendList != null }">
+        <br><br><h1>Friends list</h1> <br><br>
+         <table class="table" style="margin-left: auto; margin-right: auto; margin-top: 15px;">
+         <thead>
+         	<tr>
+         		<td class="text-left">ID</td> <td class="text-center">Name</td> <td class="text-right">Chat</td>
+         	</tr>
+         </thead>
+        <c:forEach var="friend" items="${friendList }" varStatus="loop">
+        <tr>
+        <td class="text-left"><span style="color:blue">${friend.id}</span></td><td class="text-center"> ${friend.name }</td><td class="text-right"><button class="btn btn-default" type="button" onclick="location.href='<c:url value="#"/>'">Chat</button><td>
+        </c:forEach>
+        </table>
+        </c:if>
         </div>
         
-        <div class="col-md-7 text-center" style="white-space:pre;">
+        <div class="col-md-7 text-center">
         <c:if test="${memberList != null }">
         <h4 class="text-center">Search List</h4>
-         <table class="table" style="margin-left: auto; margin-right: auto; margin-top: 15px;">
+         <table class="table" style="margin-left: auto; margin-right: auto; margin-top: 5px;">
          <thead>
          	<tr>
          		<td class="text-left">ID</td> <td class="text-center">Name</td> <td class="text-right">Friend request</td>
@@ -113,8 +124,8 @@
 			<td class="text-left" colspan="2">${board.regDate }</td>
 		</tr>
 		<tr>
-			<td class="text-left " colspan="2">${board.content }
-
+			<td class="text-top text-left " colspan="2"><span style="font-size:16pt;">${board.content }</span>
+		<br><br>
 		<c:if test="${board.image != null }">
 			<img src="uploads/${board.image }" width="400" height="300">
 		</c:if>
@@ -123,35 +134,33 @@
 		<tr>
 			<td class="text-left"><button class="btn btn-default" type="button" id="btn${board.seq }" >
 
-
 			<img id ="img${board.seq }"  alt="like" src="img/like.png" width="20" height="20">&nbsp;&nbsp;
 			<strong id="likes${board.seq }">${board.num }</strong></button></td>
 			<td class="text-right"><button class="btn btn-danger" type="button" onclick="location.href='<c:url value="/boardDelete/${board.seq }"/>'">삭제</button></td>
 		</tr>
 		<tr>
 		<td class="text-right" colspan="2">
-			<textarea class="form-control" style="resize:none" cols="58" rows="1" placeholder="Write a commnet..." name="comment"></textarea>&nbsp;&nbsp;<button class="btn btn-default">Send</button></td>
+			<textarea class="form-control" id="comments" style="resize:none" cols="58" rows="1" placeholder="Write a commnet..." ></textarea>&nbsp;&nbsp;<button class="btn btn-default" id="reply"  type="button" value="${board.seq }">Send</button></td>
 		</tr>
-		</tbody>
+		<c:if test="${commentList != null }">
+		<tr>
+			<td class="text-left">
+			<h4>Comments</h4>
+		<c:forEach var="comment" items="${commentList }" varStatus="loop">
+			<c:if test="${comment.seq == board.seq }">
+			<span style="color:blue; font-size:11pt; font-weight: bold;">${comment.id }</span><div class="col-sm-1"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-right">${comment.regDate }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<button class="btn btn-default btn-s" type="button">Delete</button><br>
+			<div class="col-sm-1"></div>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp; <span style="font-size:11pt;">${comment.comments }</span><hr/>
+			</c:if>
+		</c:forEach></td></tr>
+			</c:if>
+			</tbody>
        </table>
-       <hr>
-	</c:forEach>
+		</c:forEach>
+
         </div>
-        <div class="col-sm-3">
-         <c:if test="${friendList != null }">
-        <h1>Friends list</h1> <br><br>
-         <table class="table" style="margin-left: auto; margin-right: auto; margin-top: 15px;">
-         <thead>
-         	<tr>
-         		<td class="text-left">ID</td> <td class="text-center">Name</td> <td class="text-right">Chat</td>
-         	</tr>
-         </thead>
-        <c:forEach var="friend" items="${friendList }" varStatus="loop">
-        <tr>
-        <td class="text-left"><span style="color:blue">${friend.id}</span></td><td class="text-center"> ${friend.name }</td><td class="text-right"><button class="btn btn-default" type="button" onclick="location.href='<c:url value="#"/>'">Chat</button><td>
-        </c:forEach>
-        </table>
-        </c:if>
+        <div class="col-sm-2">
+       
        </div></div>
          </div></div>
        </div>
@@ -218,7 +227,29 @@
     	})
     	})
 
+    	//Reply value transfer
+    	$("#reply").on('click', function(){
+    		var seq = $('#reply').attr('value');
+    		var comment = $('#comments').val()
+    		var alldata = {"seq":seq , "comments":comment};
+    		
+    		$.ajax({
+        		url: "<c:url value="/reply"/>",
+        		type: "post", 
+        		data: alldata,
+        		success: function(data){
+        			if(data.msg != null){
+        				alert(data.msg);
+        			}
+        			else if(data.success != null){
+     				alert(data.success);
+     				location.href='<c:url value="/main"/>';
+        			}
+        		}
+        	})
+    	})
+    	
     </script>
-</form>
+	</form>
 </body>
 </html>

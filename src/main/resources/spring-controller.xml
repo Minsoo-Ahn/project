@@ -21,7 +21,10 @@
 	</bean>	
 	<bean id="friendController" class="project.controller.FriendController">
 		<property name="friendService" ref="friendServiceMine"/>
-	</bean>					
+	</bean>		
+	<bean id="replyController" class="project.controller.ReplyController">
+		<property name="replyService" ref="replyServiceMine"/>
+	</bean>				
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="100000000"/>
 		<property name="maxInMemorySize" value="100000000"/>

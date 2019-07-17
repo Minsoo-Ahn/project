@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import project.dao.BoardDao;
 import project.vo.BoardVO;
 import project.vo.MemberVO;
+import project.vo.ReplyVO;
 
 @Service
 public class BoardServiceMine implements BoardService{
@@ -66,6 +67,11 @@ public class BoardServiceMine implements BoardService{
 	public MemberVO searchMember(String id) {
 		
 		return boardDao.searchMember(id);
+	}
+
+	@Override
+	public List<ReplyVO> listComment() {
+		return boardDao.listComment();
 	}
 
 

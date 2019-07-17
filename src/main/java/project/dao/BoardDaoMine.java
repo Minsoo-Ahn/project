@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import project.vo.BoardVO;
 import project.vo.MemberVO;
+import project.vo.ReplyVO;
 
 
 
@@ -59,6 +60,10 @@ public class BoardDaoMine implements BoardDao{
 	@Override
 	public MemberVO searchMember(String id) {
 		return sqlSessionTemplate.selectOne("searchMember",id);
+	}
+	@Override
+	public List<ReplyVO> listComment() {
+		return sqlSessionTemplate.selectList("listComment");
 	}
 
 

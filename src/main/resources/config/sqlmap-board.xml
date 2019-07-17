@@ -44,6 +44,10 @@
 		select * from proboard
 		order by regdate desc
 	</select>
+	<select id="listComment" resultType="replyVO">
+		select * from reply
+		order by regdate asc
+	</select>
 	
 	<select id="select" parameterType="String" resultType="boardVO">
 		select * proboard

@@ -38,7 +38,7 @@ public class BoardController {
 	@RequestMapping(value="/main", method=RequestMethod.GET)
 	public String list(BoardVO boardVO,Model model) {
 		model.addAttribute("boardList", boardService.list());
-		
+		model.addAttribute("commentList", boardService.listComment());
 		return "/main";
 	}
 	
@@ -54,8 +54,7 @@ public class BoardController {
 			model.addAttribute("memberList",memberList);
 			return "/main";
 		}
-		model.addAttribute("boardList", boardService.list());
-		return "/main";
+		return "redirect:/main";
 	}
 	
 	@RequestMapping(value="/write", method=RequestMethod.GET)

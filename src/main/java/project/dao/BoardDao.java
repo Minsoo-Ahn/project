@@ -4,9 +4,11 @@ import java.util.List;
 
 import project.vo.BoardVO;
 import project.vo.MemberVO;
+import project.vo.ReplyVO;
 
 public interface BoardDao {
 	public abstract List<BoardVO> list();
+	public abstract List<ReplyVO> listComment();
 	public abstract void insert(BoardVO boardVO);
 	public abstract BoardVO select(int seq);
 	public abstract List<BoardVO> search(String search);
