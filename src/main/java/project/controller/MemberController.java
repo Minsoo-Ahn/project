@@ -1,7 +1,11 @@
 package project.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -18,8 +22,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 
 import project.service.MemberService;
+import project.vo.BoardVO;
 import project.vo.MemberVO;
 
 @Controller
@@ -156,5 +162,22 @@ public class MemberController {
 			return "/login";
 		}
 			return "/profile";
+	}
+	
+	
+	@RequestMapping(value="/imageUpload", method=RequestMethod.POST)
+	public String write(HttpServletRequest rq, BoardVO boardVO, @RequestParam("fileName")MultipartFile mf,HttpSession session) throws IllegalStateException, IOException {
+		if(!mf.getOriginalFilename().equals("")) {
+		String path = rq.getSession().getServletContext().getRealPath("uploads");
+		String path2 = "D:\\반응형웹개발자\\Spring\\springwork\\project\\src\\main\\webapp\\uploads";
+		mf.transferTo(new File(path , mf.getOriginalFilename()));
+		mf.transferTo(new File(path2 , mf.getOriginalFilename()));
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		memberVO.setImage(mf.getOriginalFilename());
+		System.out.println(memberVO.getImage());
+		System.out.println(memberVO.getId());
+		memberService.uploadImage(memberVO);
+		}
+		return "redirect:/profile";
 	}
 }

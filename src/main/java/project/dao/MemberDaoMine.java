@@ -42,7 +42,7 @@ public class MemberDaoMine implements MemberDao{
 	}
 	@Override
 	public void uploadImage(MemberVO memberVO) {
-		sqlSessionTemplate.update("uploadImage");
+		sqlSessionTemplate.update("uploadImage", memberVO);
 		
 	}
 

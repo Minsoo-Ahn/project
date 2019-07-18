@@ -79,18 +79,19 @@
         
         </div>
         <div class="container">
-        <div class="section"><div class="container"><div class="row"><div class="col-md-3"> 
+        <div class="section"><div class="container"><div class="row"><div class="col-md-4"> 
           <c:if test="${friendList != null }">
         <br><br><h1>Friends list</h1> <br><br>
          <table class="table" style="margin-left: auto; margin-right: auto; margin-top: 15px;">
          <thead>
          	<tr>
-         		<td class="text-left">ID</td> <td class="text-center">Name</td> <td class="text-right">Chat</td>
+         		<td>Photo</td><td class="text-left">ID</td> <td class="text-center">Name</td> <td class="text-right">Chat</td>
          	</tr>
          </thead>
         <c:forEach var="friend" items="${friendList }" varStatus="loop">
         <tr>
-        <td class="text-left"><span style="color:blue">${friend.id}</span></td><td class="text-center"> ${friend.name }</td><td class="text-right"><button class="btn btn-default" type="button" onclick="location.href='<c:url value="#"/>'">Chat</button><td>
+        <td><img src="uploads/${friend.image }" width="50" height="50"></td><td><span style="color:blue">${friend.id}</span></td><td class="text-center"> ${friend.name }</td><td class="text-right"><button class="btn btn-default" type="button" onclick="location.href='<c:url value="#"/>'">Chat</button>
+        </tr>
         </c:forEach>
         </table>
         </c:if>
@@ -162,7 +163,7 @@
 		</c:forEach>
 
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-1">
        
        </div></div>
          </div></div>

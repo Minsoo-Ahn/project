@@ -81,13 +81,10 @@
                     	<c:if test="${member.image !=null }">
                     	<img src="uploads/${member.image }" height ="300" width="240">
                     	</c:if>
-                    	<c:if test="${member.image ==null }">
-                    	<img src="img/person.png" height ="300" width="240">
-                    	</c:if>
                     	</label><br>
-                    	<input type="file" id="imageUpload" value="" hidden="true">
+                    	<input type="file" id="imageUpload" name="fileName" value="" hidden="true">
                     	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click the image to change a picture!</p>
-                    	<button id="button">button</button>
+                    	<button id="button" type="submit">button</button>
                     </div>
                 </div>
         <br><hr><br>

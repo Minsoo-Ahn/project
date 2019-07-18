@@ -24,7 +24,8 @@
 		select id2 from profriend where id1= #{id} and relationship='friend'
 	</select>
 	<update id="uploadImage" parameterType="memberVO">
-		update promember set image = #{image} where id=#{id}
+		update promember set image = #{image} 
+		where id= #{id}
 	</update>
 	
 </mapper>

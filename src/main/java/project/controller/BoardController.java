@@ -71,7 +71,6 @@ public class BoardController {
 		boardVO.setImage(mf.getOriginalFilename());
 		mf.transferTo(new File(path , mf.getOriginalFilename()));
 		mf.transferTo(new File(path2 , mf.getOriginalFilename()));
-		model.addAttribute("path",path);
 		}
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		if(memberVO == null) {
