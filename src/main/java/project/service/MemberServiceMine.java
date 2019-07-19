@@ -30,16 +30,8 @@ public class MemberServiceMine implements MemberService{
 		memberDao.accontSetting(memberVO);
 		
 	}
-	@Override
-	public List<String> friendId(String id) {
-		return memberDao.friendId(id);
-	}
-	
 
-	@Override
-	public int countPending(String id) {
-		return memberDao.countPending(id);
-	}
+
 	@Override
 	public void uploadImage(MemberVO memberVO) {
 		memberDao.uploadImage(memberVO);

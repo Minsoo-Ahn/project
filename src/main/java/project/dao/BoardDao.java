@@ -14,7 +14,8 @@ public interface BoardDao {
 	public abstract List<BoardVO> search(String search);
 	public abstract void delete(int seq);
 	public abstract BoardVO searchBoard(int seq);
-	public abstract List<String> idList(String search);
+	public abstract List<MemberVO> idList(String search);
 	public abstract MemberVO searchMember(String id);
-	
+	public abstract List<String> friendId(String id);
+	public abstract int countPending(String id);
 }

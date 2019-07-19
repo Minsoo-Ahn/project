@@ -59,7 +59,7 @@ public class BoardServiceMine implements BoardService{
 	}
 
 	@Override
-	public List<String> idList(String search) {
+	public List<MemberVO> idList(String search) {
 		return boardDao.idList(search);
 	}
 
@@ -74,6 +74,14 @@ public class BoardServiceMine implements BoardService{
 		return boardDao.listComment();
 	}
 
+	@Override
+	public List<String> friendId(String id) {
+		return boardDao.friendId(id);
+	}
 
+	@Override
+	public int countPending(String id) {
+		return boardDao.countPending(id);
+	}
 	
 }

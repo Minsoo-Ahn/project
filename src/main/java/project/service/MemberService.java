@@ -11,7 +11,5 @@ public interface MemberService {
 	public abstract void signUp(MemberVO memberVO);
 	public abstract MemberVO selectId(String id);
 	public abstract void memberEdit(MemberVO memberVO);
-	public abstract List<String> friendId(String id);
-	public abstract int countPending(String id);
 	public abstract void uploadImage(MemberVO memberVO);
 }

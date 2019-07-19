@@ -30,16 +30,7 @@ public class MemberDaoMine implements MemberDao{
 		sqlSessionTemplate.update("accountSetting", memberVO);
 		
 	}
-	@Override
-	public List<String> friendId(String id) {
-		return sqlSessionTemplate.selectList("friendId",id);
-	}
-	
-	@Override
-	public int countPending(String id) {
-		return sqlSessionTemplate.selectOne("countPending", id);
-		
-	}
+
 	@Override
 	public void uploadImage(MemberVO memberVO) {
 		sqlSessionTemplate.update("uploadImage", memberVO);

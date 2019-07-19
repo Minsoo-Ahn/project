@@ -67,8 +67,8 @@ public class MemberController {
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(HttpServletRequest request, @RequestParam("id") String id, @RequestParam("password")String password, HttpSession session, HttpServletResponse response) {
-		List<String> list = new ArrayList<String>();
-		List<MemberVO> memberList = new ArrayList<MemberVO>();
+		
+		
 		MemberVO memberVO = memberService.selectId(id);
 		if(memberVO == null) {
 			return "/login";
@@ -86,16 +86,8 @@ public class MemberController {
 		response.addCookie(cookie);
 		session.setAttribute("member", memberVO);
 		//friend list add
-		
-		list = memberService.friendId(id);
-		for(int i=0; i< list.size(); i++) {
-			memberList.add(i, memberService.selectId(list.get(i)));
-		}
-		session.setAttribute("friendList", memberList);
-		
-		int pendingNum = memberService.countPending(id);
-		session.setAttribute("pending", pendingNum);
 		return "redirect:/main";
+		
 	}
 	
 	@RequestMapping(value="/logout", method=RequestMethod.GET)

@@ -36,9 +36,22 @@ public class BoardController {
 	
 	
 	@RequestMapping(value="/main", method=RequestMethod.GET)
-	public String list(BoardVO boardVO,Model model) {
+	public String list(BoardVO boardVO,Model model, HttpSession session) {
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		model.addAttribute("boardList", boardService.list());
 		model.addAttribute("commentList", boardService.listComment());
+		if(memberVO != null) {
+		List<String> list = new ArrayList<String>();
+		List<MemberVO> memberList = new ArrayList<MemberVO>();
+		list = boardService.friendId(memberVO.getId());
+		for(int i=0; i< list.size(); i++) {
+			memberList.add(i, boardService.searchMember(list.get(i)));
+		}
+		session.setAttribute("friendList", memberList);
+		
+		int pendingNum = boardService.countPending(memberVO.getId());
+		session.setAttribute("pending", pendingNum);
+		}
 		return "/main";
 	}
 	
@@ -46,11 +59,8 @@ public class BoardController {
 	public String list(BoardVO boardVO, MemberVO memberVO,SearchCommand searchCommand,Model model) {
 		if( !searchCommand.getSearch().equals("")) {
 			model.addAttribute("boardList",boardService.search(searchCommand.getSearch()) );
-			List<String> idList = boardService.idList(searchCommand.getSearch());
-			List<MemberVO> memberList = new ArrayList<MemberVO>();
-			for(int i=0; i<idList.size();i++) {
-				memberList.add(i, boardService.searchMember(idList.get(i)));
-			}
+			List<MemberVO> memberList = boardService.idList(searchCommand.getSearch());
+			
 			model.addAttribute("memberList",memberList);
 			return "/main";
 		}

@@ -11,76 +11,22 @@
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="css/main.css" rel="stylesheet" type="text/css">
-<title>Insert title here</title>
+<title>HappyStory♣</title>
 <script type="text/javascript">
 </script>
 </head>
 <body>
+<%@ include file="header.jsp" %>
 <form action="<c:url value="/main" />" method="post" class="form-inline" role="form">
 <input type="text" id="like" value="${like }" hidden="true">
-      <div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="jumbotron">
-                            <h1>HappyStory♣</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <ul class="nav nav-justified nav-pills">
-                            <li class="active">
-                                <a href="<c:url value="/main"/>">Home</a>
-                            </li>
-                            <li class="active">
-                                <a href="<c:url value="/profile"/>">Profile</a>
-                            </li>
-                            <li class="active">
-                                <a data-toggle="modal" href="<c:url value="/write"/>" data-target="#modal-testNew" role="button" data-backdrop="static" >Write</a>
-                             <div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog" >
-						    <div class="modal-dialog" style="width:700px;height:1000px">
-						    <div class="modal-content"></div></div></div>
-
-                            </li>
-                            <li class="active dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <i class="fa fa-border fa-caret-down fa-fw pull-right text-muted"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="<c:url value="/signup"/>">Sign up</a>
-                                    </li>
-                                    <c:if test="${member == null }">
-                                    <li>
-                                        <a href="<c:url value="/login"/>">Login</a>
-                                    </li>
-                                    </c:if>
-                                    <c:if test="${member != null }">
-                                    <li>
-                                        <a href="<c:url value="/logout"/>">Logout</a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="<c:url value="/accountSetting"/>">Account Setting</a>
-                                    </li>
-                                    </c:if>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="#">One more separated link</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div><br>
-        <div class="col-md-8"></div><div class=" col-md-4 text-left">
-        <input type="text" class="form-control" name ="search" placeholder="Search your friends"><button class="btn btn-default btn-xs" type="submit"><img alt="search" src="img/search.jpg" width="30" height="30"></button>
+	<div class="col-sm-8"></div><div class=" col-md-4 text-left">
+        <input type="text" class="form-control" name ="search" placeholder="Search your friends" style="width:200px;"><button class="btn btn-default btn-xs" type="submit"><img alt="search" src="img/search.jpg" width="30" height="30"></button>
         &nbsp;&nbsp;&nbsp;<a href="<c:url value="/requestList"/>"><img alt="alert" src="img/notification.png" width="30" height="30">&nbsp;&nbsp;<strong>${pending }</strong></a></div>
         
         </div>
         <div class="container">
-        <div class="section"><div class="container"><div class="row"><div class="col-md-4"> 
-          <c:if test="${friendList != null }">
+        <div class="section"><div class="container"><div class="row"><div class="col-md-3"> 
+          <c:if test="${friendList[0] != null }">
         <br><br><h1>Friends list</h1> <br><br>
          <table class="table" style="margin-left: auto; margin-right: auto; margin-top: 15px;">
          <thead>
@@ -90,7 +36,7 @@
          </thead>
         <c:forEach var="friend" items="${friendList }" varStatus="loop">
         <tr>
-        <td><img src="uploads/${friend.image }" width="50" height="50"></td><td><span style="color:blue">${friend.id}</span></td><td class="text-center"> ${friend.name }</td><td class="text-right"><button class="btn btn-default" type="button" onclick="location.href='<c:url value="#"/>'">Chat</button>
+        <td><img src="uploads/${friend.image }" width="40" height="40"></td><td><span style="color:blue">${friend.id}</span></td><td class="text-center"> ${friend.name }</td><td class="text-right"><button class="btn btn-default text-right" type="button" onclick="location.href='<c:url value="#"/>'">Chat</button>
         </tr>
         </c:forEach>
         </table>
@@ -168,30 +114,6 @@
        </div></div>
          </div></div>
        </div>
-        
-        <footer class="section section-primary">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h1>Footer header</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisici elit,
-                            <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
-                            <br>Ut enim ad minim veniam, quis nostrud</p>
-                    </div>
-                    <div class="col-sm-6">
-                        
-                        
-                        <div class="row">
-                            <div class="col-md-12 hidden-xs text-right">
-                                <a href="http://www.instagram.com"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
-                                <a href="http://www.instagram.com"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
-                                <a href="https://github.com/myrroomm/"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
     <script>
     	
     
@@ -264,5 +186,6 @@
     	
     </script>
 	</form>
+<%@include file="footer.jsp" %>
 </body>
 </html>

@@ -53,7 +53,7 @@ public class BoardDaoMine implements BoardDao{
 		return vo;
 	}
 	@Override
-	public List<String> idList(String search) {
+	public List<MemberVO> idList(String search) {
 		return sqlSessionTemplate.selectList("idList",search);
 	}
 	
@@ -66,8 +66,16 @@ public class BoardDaoMine implements BoardDao{
 		return sqlSessionTemplate.selectList("listComment");
 	}
 
-
-
+	@Override
+	public List<String> friendId(String id) {
+		return sqlSessionTemplate.selectList("friendId",id);
+	}
+	
+	@Override
+	public int countPending(String id) {
+		return sqlSessionTemplate.selectOne("countPending", id);
+		
+	}
 
 	
 }
