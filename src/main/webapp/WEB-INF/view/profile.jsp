@@ -29,7 +29,7 @@
                     	</label><br>
                     	<input type="file" id="imageUpload" name="fileName" value="" hidden="true">
                     	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click the image to change a picture!</p>
-                    	<button id="button" type="submit">button</button>
+                    	<div class="col-sm-3"></div><div class="col-sm-9"><button class="btn btn-default" id="button" type="submit">Save</button></div>
                     </div>
                 </div>
         <br><hr><br>

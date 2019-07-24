@@ -83,4 +83,13 @@ public class FriendController {
 		session.setAttribute("pending", (int)session.getAttribute("pending")-1);
 		return "redirect:/main";
 	}
+
+	@RequestMapping(value="/chatRequest/{id}")
+	public String chat(HttpSession session, @PathVariable String id, Model model) {
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		String id1 = memberVO.getId();
+		session.setAttribute("myId", id1);
+		session.setAttribute("friendId", id);
+		return "/chat";
+	}
 }

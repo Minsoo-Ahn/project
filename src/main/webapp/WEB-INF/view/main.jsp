@@ -19,13 +19,13 @@
 <%@ include file="header.jsp" %>
 <form action="<c:url value="/main" />" method="post" class="form-inline" role="form">
 <input type="text" id="like" value="${like }" hidden="true">
-	<div class="col-sm-8"></div><div class=" col-md-4 text-left">
+	<div class="col-sm-8"></div>
         <input type="text" class="form-control" name ="search" placeholder="Search your friends" style="width:200px;"><button class="btn btn-default btn-xs" type="submit"><img alt="search" src="img/search.jpg" width="30" height="30"></button>
-        &nbsp;&nbsp;&nbsp;<a href="<c:url value="/requestList"/>"><img alt="alert" src="img/notification.png" width="30" height="30">&nbsp;&nbsp;<strong>${pending }</strong></a></div>
+        &nbsp;&nbsp;&nbsp;<a href="<c:url value="/requestList"/>"><img alt="alert" src="img/notification.png" width="30" height="30">&nbsp;&nbsp;<strong>${pending }</strong></a>
         
-        </div>
+  
         <div class="container">
-        <div class="section"><div class="container"><div class="row"><div class="col-md-3"> 
+        <div class="section"><div class="container"><div class="row"><div class="col-md-4"> 
           <c:if test="${friendList[0] != null }">
         <br><br><h1>Friends list</h1> <br><br>
          <table class="table" style="margin-left: auto; margin-right: auto; margin-top: 15px;">
@@ -36,7 +36,7 @@
          </thead>
         <c:forEach var="friend" items="${friendList }" varStatus="loop">
         <tr>
-        <td><img src="uploads/${friend.image }" width="40" height="40"></td><td><span style="color:blue">${friend.id}</span></td><td class="text-center"> ${friend.name }</td><td class="text-right"><button class="btn btn-default text-right" type="button" onclick="location.href='<c:url value="#"/>'">Chat</button>
+        <td><img src="uploads/${friend.image }" width="40" height="40"></td><td><span style="color:blue">${friend.id}</span></td><td class="text-center"> ${friend.name }</td><td class="text-right"><button class="btn btn-default text-right" type="button" onclick="javascript:window.open('<c:url value="/chatRequest/${friend.id }"/>','new','left=650, top=250, width=400, height=600')">Chat</button>
         </tr>
         </c:forEach>
         </table>
@@ -184,6 +184,10 @@
         	})}
     	})
     	
+    	$("[id^=chat]").on('click', function(){
+			window.open ('경로','','location=no, directories=no, resizable=no, status=no, toolbar=no, menubar=no, width=300, height=400, left=0, top=0, scrollbars=yes');
+			location.href="";
+    	})
     </script>
 	</form>
 <%@include file="footer.jsp" %>

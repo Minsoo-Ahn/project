@@ -26,7 +26,7 @@ public class ReplyController {
 	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping(value="/reply", method=RequestMethod.POST, produces = "application/json")
-	public String add(ReplyVO replyVO , @RequestParam("seq") int seq,@RequestParam("comments") String comments, HttpServletRequest request, HttpSession session) {
+	public String add(ReplyVO replyVO , @RequestParam("seq") int seq, @RequestParam("comments") String comments, HttpServletRequest request, HttpSession session) {
 		JSONObject obj = new JSONObject();
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		if(memberVO ==null) {

@@ -1,5 +1,7 @@
 package project.vo;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -9,7 +11,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Alias("MemberVO")
-public class MemberVO {
+public class MemberVO implements Serializable{
 	@Length(min=6, max=12, message="ID should be 6 ~ 12 character")
 	private String id;
 	@Length(min=6, max=12, message="Password should be 6 ~ 12 character")

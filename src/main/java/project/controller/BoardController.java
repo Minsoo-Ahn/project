@@ -59,8 +59,8 @@ public class BoardController {
 	public String list(BoardVO boardVO, MemberVO memberVO,SearchCommand searchCommand,Model model) {
 		if( !searchCommand.getSearch().equals("")) {
 			model.addAttribute("boardList",boardService.search(searchCommand.getSearch()) );
-			List<MemberVO> memberList = boardService.idList(searchCommand.getSearch());
 			
+			List<MemberVO> memberList = boardService.idList(searchCommand.getSearch());
 			model.addAttribute("memberList",memberList);
 			return "/main";
 		}
