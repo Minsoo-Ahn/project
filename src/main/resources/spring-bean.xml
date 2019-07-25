@@ -87,7 +87,9 @@
 		<property name="replyDao" ref="replyDao"/>
 	</bean>
 	
-	<bean id="websocketHandler" class="project.controller.WebsocketHandler"/>
+	<bean id="websocketHandler" class="project.controller.WebsocketHandler">
+		<constructor-arg ref="friendServiceMine"/>
+	</bean>
 	<websocket:handlers>
     <websocket:mapping handler="websocketHandler" path="chat"/>
     <websocket:handshake-interceptors>

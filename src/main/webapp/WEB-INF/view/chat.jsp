@@ -4,68 +4,69 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<link href="../css/main.css" rel="stylesheet" type="text/css">
+<title>Chat</title>
 </head>
 <body>
 	<div id="one">
 	<input type="text" id="friend" value="${friendId }" hidden="true"/>
-		<input type="text" id="nickname" value="${myId }" /> <input type="button"
-			id="enter" value="입장" />
+		<input type="text" id="nickname" value="${myId }" hidden="true"/> 
+		<button class="btn btn-default" type="button" id="enter" >Enter</button>
 	</div>
 	<div id="two">
 		<div id="chatarea"
-			style="width: 300px; height: 500px; border: 1px solid;"></div>
-		<input type="text" id="message" /> <input type="button" id="send"
-			value="Send" />
+			style="width: 500px; height: 500px; border: 1px solid;"></div>
+			<input type="text" id="message" class="form-control" size="30"/> 
 	</div>
 </body>
 <script>
-	one = document.getElementById("one");
-	two = document.getElementById("two");
+
 	nickname = document.getElementById("nickname").value;
 	friend = document.getElementById("friend").value;
-	document.getElementById("enter").addEventListener("click", function() {
+	$('#enter').on("click", function() {
 		//웹 소켓 연결해주는 함수 호출 
 		connect();
 	});
-/* 	document.getElementById("exit").addEventListener("click", function() {
-		//연결을 해제해주는 함수 호출 
-		disconnect();
-	}); */
-	document.getElementById("send").addEventListener("click", function() {
-		//연결을 해제해주는 함수 호출 
-		send();
-	});
+	
+	$(document).ready(function(){
+		$('#message').keydown(function(key) {		
+			if(key.keyCode == 13){
+				send();
+			}
+		}) 
+	})
+	
 	var websocket;
 	//입장 버튼을 눌렀을 때 호출되는 함수 
 	function connect() {
-		websocket = new WebSocket("ws://localhost:8080<c:url value='/chat/websocket'/>");
+		websocket = new WebSocket("ws://192.168.0.77:8080<c:url value='/chat/websocket'/>");
 		//웹 소켓에 이벤트가 발생했을 때 호출될 함수 등록 
 		websocket.onopen = onOpen;
 		websocket.onmessage = onMessage;
 		websocket.onclose = onClose;
-	}
-	//퇴장 버튼을 눌렀을 때 호출되는 함수 
-/* 	function disconnect() {
-		msg = document.getElementById("nickname").value;
-		websocket.send(msg + "님이 퇴장하셨습니다");
-		websocket.close();
-	} */
+	} 
+
 	//보내기 버튼을 눌렀을 때 호출될 함수 
 	function send() {
 		
 		msg = document.getElementById("message").value;
-		websocket.send(nickname + ":" + msg);
+		websocket.send(nickname + " : " + msg);
 		document.getElementById("message").value = "";
 	}
 	//웹 소켓에 연결되었을 때 호출될 함수 
 	function onOpen() {
-		websocket.send(nickname + "님 입장하셨습니다.");
+		alert(nickname + "님 입장하셨습니다.");
 	}
 	function onMessage(evt) {
 		data = evt.data;
 		chatarea = document.getElementById("chatarea");
-		chatarea.innerHTML = chatarea.innerHTML + "<br/>" + data
+		if(data.startsWith(nickname)){
+			chatarea.innerHTML = chatarea.innerHTML + "<br/>" + data
+		} else if (data.startsWith(friend)){
+			chatarea.innerHTML = chatarea.innerHTML + "<br/>" + data	
+		}
 	}
 	//웹 소켓에서 연결이 해제 되었을 때 호출될 함수 
 	function onClose() {

@@ -36,7 +36,7 @@
          </thead>
         <c:forEach var="friend" items="${friendList }" varStatus="loop">
         <tr>
-        <td><img src="uploads/${friend.image }" width="40" height="40"></td><td><span style="color:blue">${friend.id}</span></td><td class="text-center"> ${friend.name }</td><td class="text-right"><button class="btn btn-default text-right" type="button" onclick="javascript:window.open('<c:url value="/chatRequest/${friend.id }"/>','new','left=650, top=250, width=400, height=600')">Chat</button>
+        <td><img src="uploads/${friend.image }" width="40" height="40"></td><td><span style="color:blue">${friend.id}</span></td><td class="text-center"> ${friend.name }</td><td class="text-right"><button class="btn btn-default text-right" type="button" onclick="javascript:window.open('<c:url value="/chatRequest/${friend.id }"/>','new','left=650, top=250, width=500, height=600')">Chat</button>
         </tr>
         </c:forEach>
         </table>
@@ -87,10 +87,10 @@
 		</tr>
 		<tr>
 		<td class="text-right" colspan="2">
-			<textarea class="form-control" id="comments${board.seq }" style="resize:none" cols="58" rows="1" placeholder="Write a commnet..." ></textarea>&nbsp;&nbsp;<button class="btn btn-default" id="reply${board.seq }"  type="button" ">Send</button></td>
+			<textarea class="form-control" id="comments${board.seq }" style="resize:none" cols="58" rows="1" placeholder="Write a commnet..." ></textarea>&nbsp;&nbsp;<button class="btn btn-default" id="reply${board.seq }"  type="button" >Send</button></td>
 		</tr>
 		<c:if test="${commentList != null }">
-		<tr>
+		<tr id ="refresh${board.seq }">
 			<td class="text-left">
 			<h4>Comments</h4>
 		<c:forEach var="comment" items="${commentList }" varStatus="loop">

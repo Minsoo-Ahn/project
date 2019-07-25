@@ -17,14 +17,8 @@
 </head>
 <body>
 <%@include file="header.jsp" %>
-<form action="<c:url value="/main" />" method="post" class="form-inline" role="form">
-<input type="text" id="like" value="${like }" hidden="true">
-
-        <div class="col-md-6">
-		</div>
-		<button class="btn btn-default" onclick="history.go(0)">Refresh</button>
         <div class="container">
-        <div class="section"><div class="container"><div class="row"><div class="col-md-3"><div class="col-md-12">  <h1>Friends list</h1> <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet.</p></div></div>
+        <div class="section"><div class="container"><div class="row"><div class="col-md-3"><div class="col-md-12">  </div></div>
         
         <div class="col-md-7 text-center" style="white-space:pre;"><div class="col-md-12"> 
       <h4 class="text-center">Search List</h4>
@@ -39,9 +33,9 @@
         <td class="text-left"><span style="color:blue">${list}</span></td><td class="text-right"><button class="btn btn-success btn-s" type="button" onclick="location.href='<c:url value="/pendingAccept/${list}"/>'">Accept</button>   <button class="btn btn-danger btn-s" type="button" onclick="location.href='<c:url value="/pendingReject/${list}"/>'">Reject</button></td>
         </c:forEach>
         </table>
+        <button class="btn btn-default" type="button" onclick="<c:url value="/main"/>">메인</button>
         </div></div><div class="row"> </div></div></div></div></div>
         
 <%@include file="footer.jsp" %>        
-</form>
 </body>
 </html>
