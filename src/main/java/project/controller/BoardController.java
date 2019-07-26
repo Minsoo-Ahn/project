@@ -114,10 +114,5 @@ public class BoardController {
 		}
 			return "redirect:/main";
 	}
-	
-	@RequestMapping(value="/refresh", method=RequestMethod.GET)
-	public String boardDelete() {
-		
-			return "/reply";
-	}
+
 }

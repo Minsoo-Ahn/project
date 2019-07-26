@@ -7,6 +7,14 @@ public class FriendVO {
 	private String id1;
 	private String id2;
 	private String relationship;
+	private String chat;
+	
+	public String getChat() {
+		return chat;
+	}
+	public void setChat(String chat) {
+		this.chat = chat;
+	}
 	public String getId1() {
 		return id1;
 	}

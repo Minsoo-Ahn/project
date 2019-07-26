@@ -42,6 +42,17 @@ public class FriendServiceMine implements FriendService{
 		return friendDao.checkFriend(friendVO);
 	}
 
+	@Override
+	public void updateChat(FriendVO friendVO) {
+		friendDao.updateChat(friendVO);
+		
+	}
+
+	@Override
+	public String checkChat(FriendVO friendVO) {
+		return friendDao.checkChat(friendVO);
+	}
+
 
 
 }

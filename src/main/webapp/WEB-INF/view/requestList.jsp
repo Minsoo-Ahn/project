@@ -21,7 +21,7 @@
         <div class="section"><div class="container"><div class="row"><div class="col-md-3"><div class="col-md-12">  </div></div>
         
         <div class="col-md-7 text-center" style="white-space:pre;"><div class="col-md-12"> 
-      <h4 class="text-center">Search List</h4>
+      <h4 class="text-center">Friend request list</h4>
          <table class="table" style="margin-left: auto; margin-right: auto; margin-top: 15px;">
          <thead>
          	<tr>

@@ -4,7 +4,7 @@
 
 <mapper namespace="friendDao">
 	<insert id="addFriend" parameterType="friendVO">
-		insert into profriend values(#{id1}, #{id2}, #{relationship})
+		insert into profriend (id1, id2, relationship) values(#{id1}, #{id2}, #{relationship})
 	</insert>
 	<delete id="deleteFriend" parameterType="friendVO">
 		delete from profriend where id1= #{id1}, id2 =#{id2}, relationship= #{relationship})
@@ -22,5 +22,11 @@
 		update profriend set relationship = #{relationship} where id1 = #{id1} and id2 = #{id2} 
 	</update>
 	
-
+	<update id="updateChat" parameterType="friendVO">
+		update profriend set chat = #{chat} where id1 = #{id1} and id2 = #{id2} 
+	</update>
+	
+	<select id="checkChat" parameterType="friendVO" resultType="java.lang.String">
+		select chat from profriend where id1= #{id1} and id2= #{id2}
+	</select>
 </mapper>

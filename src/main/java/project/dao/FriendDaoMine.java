@@ -43,5 +43,14 @@ public class FriendDaoMine implements FriendDao{
 	public int checkFriend(FriendVO friendVO) {
 		return sqlSessionTemplate.selectOne("checkFriend", friendVO);
 	}
+	@Override
+	public void updateChat(FriendVO friendVO) {
+		sqlSessionTemplate.update("updateChat", friendVO);
+		
+	}
+	@Override
+	public String checkChat(FriendVO friendVO) {
+		return sqlSessionTemplate.selectOne("checkChat", friendVO);
+	}
 	
 }

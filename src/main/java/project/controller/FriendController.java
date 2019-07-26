@@ -87,6 +87,9 @@ public class FriendController {
 	@RequestMapping(value="/chatRequest/{id}")
 	public String chat(HttpSession session, @PathVariable String id, Model model) {
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		if(memberVO == null) {
+			return "redirect:/login";
+		}
 		String id1 = memberVO.getId();
 		session.setAttribute("myId", id1);
 		session.setAttribute("friendId", id);

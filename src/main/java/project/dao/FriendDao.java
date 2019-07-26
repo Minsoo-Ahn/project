@@ -11,5 +11,6 @@ public interface FriendDao {
 	abstract List<String> pendingList(String id);
 	abstract void update(FriendVO friendVO);
 	abstract int checkFriend(FriendVO friendVO);
-	
+	abstract void updateChat(FriendVO friendVO);
+	abstract String checkChat(FriendVO friendVO);
 }

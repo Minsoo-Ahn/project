@@ -88,7 +88,7 @@
 	</bean>
 	
 	<bean id="websocketHandler" class="project.controller.WebsocketHandler">
-		<constructor-arg ref="friendServiceMine"/>
+		<property name="friendService" ref="friendServiceMine"/>
 	</bean>
 	<websocket:handlers>
     <websocket:mapping handler="websocketHandler" path="chat"/>

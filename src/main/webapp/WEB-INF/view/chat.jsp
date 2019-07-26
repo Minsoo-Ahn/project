@@ -13,11 +13,11 @@
 	<div id="one">
 	<input type="text" id="friend" value="${friendId }" hidden="true"/>
 		<input type="text" id="nickname" value="${myId }" hidden="true"/> 
-		<button class="btn btn-default" type="button" id="enter" >Enter</button>
 	</div>
 	<div id="two">
-		<div id="chatarea"
-			style="width: 500px; height: 500px; border: 1px solid;"></div>
+		<textarea id="chatarea" class="form-control"  style="resize:none; font-size:15px" cols="35" rows="26" readonly>
+		</textarea> 
+		
 			<input type="text" id="message" class="form-control" size="30"/> 
 	</div>
 </body>
@@ -25,17 +25,19 @@
 
 	nickname = document.getElementById("nickname").value;
 	friend = document.getElementById("friend").value;
-	$('#enter').on("click", function() {
+/* 	$('#enter').on("click", function() {
 		//웹 소켓 연결해주는 함수 호출 
-		connect();
-	});
+	}); */
 	
 	$(document).ready(function(){
+		connect();
+		
 		$('#message').keydown(function(key) {		
 			if(key.keyCode == 13){
 				send();
+				
 			}
-		}) 
+		})
 	})
 	
 	var websocket;
@@ -61,12 +63,15 @@
 	}
 	function onMessage(evt) {
 		data = evt.data;
+		var date = data.slice(0, 19);
+		var content = data.slice(19);
 		chatarea = document.getElementById("chatarea");
-		if(data.startsWith(nickname)){
-			chatarea.innerHTML = chatarea.innerHTML + "<br/>" + data
-		} else if (data.startsWith(friend)){
-			chatarea.innerHTML = chatarea.innerHTML + "<br/>" + data	
+		if(data.startsWith(nickname,19)){
+			chatarea.innerHTML = chatarea.innerHTML + "\n" + date + "\n"+content
+		} else if (data.startsWith(friend,19)){
+			chatarea.innerHTML = chatarea.innerHTML + "\n" + date + "\n"+content
 		}
+		$('#chatarea').scrollTop($('#chatarea')[0].scrollHeight);
 	}
 	//웹 소켓에서 연결이 해제 되었을 때 호출될 함수 
 	function onClose() {
